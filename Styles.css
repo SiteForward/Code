@@ -1,4 +1,4 @@
-/* Styles.css - v1.2 */
+/* Styles.css - v1.3 */
 
 
 
@@ -249,6 +249,23 @@ a.card:hover::after{
   .step-wrapper>div:not(:first-of-type)::before {
     left: 0;
   }
+}
+
+/* ----- Same line split form items ----- */
+.form-item.split {
+    display: flex;
+    justify-content: space-between;
+}
+.form-item.split div {
+    flex: 1;
+}
+@media(min-width: 820px){
+  .form-item.split div:not(:first-of-type) {
+      margin: 0 5px;
+  }
+}
+.form-item.split label {
+    display: block;
 }
 
 /* ----- Animated Border----- */
