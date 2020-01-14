@@ -1,4 +1,4 @@
-/* Styles.css - v1.3 */
+/* Styles.css - v1.4 */
 
 
 
@@ -440,6 +440,32 @@ div.alternateBoxes > div.row:nth-child(even) > div:first-of-type + div > h2{
 /**** CAROUSEL ****/
 .owl-theme .owl-dots button.owl-dot {
   padding: 0 !important;
+}
+.owl-theme .owl-dots .owl-dot span {
+  background: #869791;
+}
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+  background: rgb(214, 214, 214);
+}
+
+.owl-theme.owl-pill .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots.owl-pill .owl-dot.active span,
+.owl-theme.owl-pill .owl-dots .owl-dot:hover span,
+.owl-theme .owl-dots.owl-pill .owl-dot:hover span {
+  height: 20px;
+}
+.owl-theme .owl-dots.owl-pill .owl-dot span,
+.owl-theme.owl-pill .owl-dots .owl-dot span{
+  transition: height .25s;
+  margin: 5px;
+}
+
+.owl-theme .owl-dots.owl-line .owl-dot span,
+.owl-theme.owl-line .owl-dots .owl-dot span {
+  height: 5px;
+  width: 20px;
+  border-radius: 0%;
 }
 
 .owl-theme .owl-dots.owl-line .owl-dot span,
