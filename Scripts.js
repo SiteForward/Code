@@ -1,4 +1,4 @@
-// Scripts.js - v1.3
+// Scripts.js - v1.4
 
 
 
@@ -17,6 +17,12 @@ function waitForLoad(callback){
       callback();
     }
   });
+}
+function initHiddenRecaptcha(){
+  $(".form-item.is-recaptcha").hide();
+  $("form").on("change", function(){
+   $(this).find(".form-item.is-recaptcha").show();
+ });
 }
 
 function updateShareLinks(){
@@ -84,6 +90,14 @@ function initMembersOverlayURL(){
       }, 500);
     }
   });
+}
+function updateAlternateBoxes(){
+  if(!window.suppress)
+    $(".alternateBoxes img").each(function(i, e){
+      $(e).hide();
+      var src = e.src;
+      $(e).parent().parent()[0].style="background: url("+src+"); background-size: cover";
+    });
 }
 
 function initIrisScrollAdjust(){
@@ -239,8 +253,7 @@ function initSlideshow(){
         loop: true,
         autoplay: true,
        autoplayTimeout: 10000,
-       dotsSpeed: 750,
-        dotsSpeed: 750
+       dotsSpeed: 750
       });
      owl.on('changed.owl.carousel', function(e) {
       owl.trigger('stop.owl.autoplay');
