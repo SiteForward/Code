@@ -50,6 +50,25 @@ function updateOnTransparent(transparent, notTransparent){
    }, 1);
   }
 }
+function initExternalBlogDisclaimer(disclaimer){
+  if($(".blog-page").length > 0){
+
+    var hasExternalLink = false;
+
+    $(".post-link").each(function(i, item){
+      item = $(item);
+      var link = item.find("a");
+      if(link.prop("target") == "_blank" && link.prop("href").indexOf("https://static.twentyoverten.com") != 0){
+        hasExternalLink = true;
+        item.find(".post-header").find("h3").append('<sup style="font-size:.9rem"> *</sup>');
+      }
+    });
+    if(hasExternalLink){
+      var footNote = "* This article link will open in a new internet browser tab. " + disclaimer;
+      $(".posts-wrapper").append('<div class="container"><div class="main-content" id="footNote" ><p style="text-align:center" class="disclaimer">'+footNote+'</p></div></div>');
+    }
+  }
+}
 
 function updateCopyrightYear(){
    $(function() {
