@@ -1,4 +1,4 @@
-// Scripts.js - v1.4
+// Scripts.js - v1.5
 
 
 
@@ -139,7 +139,7 @@ function initQuickScroll(){
       ScrollTo(location.hash);
     }, 1);
   }
-  $('.content-wrapper a[href*="#"], #content a[href*="#"]').on('click', function(e){
+  $('.content-wrapper a[href*="#"], #content a[href*="#"], .posts-wrappera[href*="#"]').on('click', function(e){
        var target = e.target.hash;
 
        if(target){
