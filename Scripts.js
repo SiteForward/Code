@@ -282,8 +282,7 @@ function initSlideshow(){
   }
 }
 
-
-function initCarousel(container, useSelector, selectorStyle, rotateText, items, globalStyle){
+function initCarousel(container, useSelector, selectorStyle, rotateText, items, globalStyle, alignment2){
 
   //init variables
   var i = 1;
@@ -291,9 +290,11 @@ function initCarousel(container, useSelector, selectorStyle, rotateText, items, 
   var pupilFramework = $(container).find(".overlay-wrapper").length > 0,
       intrinsic = $(container).hasClass("is-intrinsic");
 
-      if(!globalStyle)
-        globalStyle = "background-position: center center; background-repeat: no-repeat; background-attachment: scroll; background-size: cover;";
-
+  if(!globalStyle)
+      globalStyle = "background-position: center center; background-repeat: no-repeat; background-attachment: scroll; background-size: cover;";
+  else if(alignment2)
+      globalStyle = "background-position: "+globalStyle+" "+alignment2+"; background-repeat: no-repeat; background-attachment: scroll; background-size: cover;";
+	
   //Add each item to the carousel, also start creation of selector
   items.forEach(function(item) {
     var img = item.img;
