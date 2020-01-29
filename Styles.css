@@ -1,4 +1,4 @@
-/* Styles.css - v1.4 */
+/* Styles.css - v1.5 */
 
 
 
@@ -99,6 +99,9 @@ blockquote::before{
 
 .callout:not(.callout-gray) a:not(.btn){
    color: white;
+}
+.callout.callout-gray .post-link a:hover h3 {
+    color: rgba(20, 20, 20, 0.5);
 }
 /* ----- Callout Flush----- */
 .callout.flush-bottom {
