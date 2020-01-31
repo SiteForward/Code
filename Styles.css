@@ -11,14 +11,6 @@ hr {
   height: 0;
 }
 
-blockquote {
-  margin-top: 0;
-}
-
-blockquote::before{
-  display: none !important;
-}
-
 #content a::after {
   background: none;
 }
