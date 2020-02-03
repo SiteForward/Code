@@ -1,4 +1,10 @@
-// Scripts.js - v1.6
+// Scripts.js - v1.7
+/*
+1.7
+- initQuickScroll now applys to main navigation links as well
+1.6
+- Added option to define just alignment in initCarousel
+*/
 
 
 
@@ -115,7 +121,7 @@ function updateAlternateBoxes(){
     $(".alternateBoxes img").each(function(i, e){
       $(e).hide();
       var src = e.src;
-      $(e).parent().parent()[0].style="background: url("+src+"); background-size: cover";
+      $(e).parent().parent()[0].style="background: url("+src+"); background-size: cover; background-position: center center; min-height: 300px;";
     });
 }
 
@@ -158,7 +164,7 @@ function initQuickScroll(){
       ScrollTo(location.hash);
     }, 1);
   }
-  $('.content-wrapper a[href*="#"], #content a[href*="#"], .posts-wrappera[href*="#"]').on('click', function(e){
+  $('.content-wrapper a[href*="#"], #content a[href*="#"], .posts-wrappera[href*="#"], #main-navigation a[href^="'+this.location.pathname+'#"]').on('click', function(e){
        var target = e.target.hash;
 
        if(target){
@@ -282,6 +288,7 @@ function initSlideshow(){
   }
 }
 
+
 function initCarousel(container, useSelector, selectorStyle, rotateText, items, globalStyle, alignment2){
 
   //init variables
@@ -294,7 +301,7 @@ function initCarousel(container, useSelector, selectorStyle, rotateText, items, 
       globalStyle = "background-position: center center; background-repeat: no-repeat; background-attachment: scroll; background-size: cover;";
   else if(alignment2)
       globalStyle = "background-position: "+globalStyle+" "+alignment2+"; background-repeat: no-repeat; background-attachment: scroll; background-size: cover;";
-	
+
   //Add each item to the carousel, also start creation of selector
   items.forEach(function(item) {
     var img = item.img;
