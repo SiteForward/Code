@@ -1,7 +1,9 @@
-// Scripts.js - v1.7
+// Scripts.js - v1.8
 /*
+1.8
+- Fixed initMoveBelow
 1.7
-- initQuickScroll now applys to main navigation links as well
+- initQuickScroll now applies to main navigation links as well
 1.6
 - Added option to define just alignment in initCarousel
 */
@@ -494,13 +496,12 @@ function initVideo(container, videoURL){
 }
 function initMoveBelow(){
   $(".moveBelow").each(function(){
-    var belowArea = $(this).data("below_area");
-    if(belowArea && !window.suppress){
-      belowArea = $("."+belowArea).find(".content-wrapper");
+    var belowArea = $($(this).data("below_area"));
+    if(belowArea.length > 0 && (belowArea.closest(".editable").length >= 0 || (belowArea.closest(".editable").length > 0 && !window.suppress))){
 
       $(this).hide();
       var content = $(this).clone();
-      content.addClass("main-content");
+      content.addClass("main-content main-content-wrapper");
 
       content.appendTo(belowArea);
       content.wrap('<div class="container"></div>');
