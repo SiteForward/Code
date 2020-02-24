@@ -1,5 +1,7 @@
-// Scripts.js - v1.8
+// Scripts.js - v1.9
 /*
+1.9
+- Added option to define just alignment in initCarousel per item
 1.8
 - Fixed initMoveBelow
 1.7
@@ -298,19 +300,23 @@ function initCarousel(container, useSelector, selectorStyle, rotateText, items, 
   var containerItems = "";
   var pupilFramework = $(container).find(".overlay-wrapper").length > 0,
       intrinsic = $(container).hasClass("is-intrinsic");
-
+  var x ="center",
+      y = "center";
   if(!globalStyle)
       globalStyle = "background-position: center center; background-repeat: no-repeat; background-attachment: scroll; background-size: cover;";
-  else if(alignment2)
-      globalStyle = "background-position: "+globalStyle+" "+alignment2+"; background-repeat: no-repeat; background-attachment: scroll; background-size: cover;";
-
+  else if(alignment2){
+    x = globalStyle;
+    y = alignment2;
+    globalStyle = "background-position: "+x+" "+y+"; background-repeat: no-repeat; background-attachment: scroll; background-size: cover;";
+  }
   //Add each item to the carousel, also start creation of selector
   items.forEach(function(item) {
     var img = item.img;
+    var style = item.style ? item.style : (item.y || item.x ? "background-position: "+ (item.y ? item.y : y)  +" "+(item.x ? item.x : x)+"; background-repeat: no-repeat; background-attachment: scroll; background-size: cover;" : globalStyle);
     containerItems += '<div class="item">';
 
     if(!intrinsic)
-      containerItems += '<div class="bg" data-src="' + img + '" style="' + (item.style ? item.style : globalStyle) + ' background-image: url(\'' + img + '\')"></div>';
+      containerItems += '<div class="bg" data-src="' + img + '" style="' + style + ' background-image: url(\'' + img + '\')"></div>';
     else
       containerItems += '<figure class="page-bg--image"><img src="'+img+'"></figure>';
 
