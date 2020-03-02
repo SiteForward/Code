@@ -1,5 +1,7 @@
-// Scripts.js - v1.9
+// Scripts.js - v1.10
 /*
+1.10
+- Corrected initMoveBelow to only trigger when not in edit mode
 1.9
 - Added option to define just alignment in initCarousel per item
 1.8
@@ -500,13 +502,18 @@ function initVideo(container, videoURL){
       // Run the function on load
       bgSwap();
 }
+
 function initMoveBelow(){
   $(".moveBelow").each(function(){
-    var belowArea = $($(this).data("below_area"));
-    if(belowArea.length > 0 && (belowArea.closest(".editable").length >= 0 || (belowArea.closest(".editable").length > 0 && !window.suppress))){
+    var $this = $(this);
+    var belowArea = $($this.data("below_area"));
+    if(belowArea.length > 0 &&
+      ($this.closest(".editable").length == 0 ||
+      ($this.closest(".editable").length > 0 && !window.suppress))){
 
-      $(this).hide();
-      var content = $(this).clone();
+      $this.hide();
+      var content = $this.clone();
+      content.removeClass("moveBelow");
       content.addClass("main-content main-content-wrapper");
 
       content.appendTo(belowArea);
