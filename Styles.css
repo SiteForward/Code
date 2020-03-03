@@ -1,5 +1,6 @@
-/* Styles.css - v1.6
-
+/* Styles.css - v1.7
+1.7
+- Added more priority to callout-gray and callout-black
 1.6
 - align-bottom-wrapped added
 - moveBelow shows wrapper selector
@@ -93,33 +94,35 @@ hr {
     margin-right: 0;
   }
 }
-/* ----- Callout Gray----- */
-.callout.callout-gray,
-.callout.callout-gray h3,
-.callout.callout-gray p,
-.callout.callout-gray .post-excerpt {
-  color: rgba(20, 20, 20, 0.6);
-}
-
-.callout.callout-gray::before {
-  background: #f3f3f3;
-}
 
 .callout:not(.callout-gray) a:not(.btn){
    color: white;
 }
-.callout.callout-gray .post-link a:hover h3 {
+
+/* ----- Callout Gray----- */
+.callout.callout-gray:not(.is-secondary):not(.callout--light),
+.callout.callout-gray:not(.is-secondary):not(.callout--light) h3,
+.callout.callout-gray:not(.is-secondary):not(.callout--light) p,
+.callout.callout-gray:not(.is-secondary):not(.callout--light) .post-excerpt {
+  color: rgba(20, 20, 20, 0.6);
+}
+
+.callout.callout-gray:not(.is-secondary):not(.callout--light)::before {
+  background: #f3f3f3;
+}
+
+.callout.callout-gray:not(.is-secondary):not(.callout--light) .post-link a:hover h3 {
     color: rgba(20, 20, 20, 0.5);
 }
 
 /* ----- Callout Black----- */
-.callout.callout-black,
-.callout.callout-black h3,
-.callout.callout-black p,
-.callout.callout-black .post-excerpt {
+.callout.callout-black:not(.is-secondary):not(.callout--light),
+.callout.callout-black:not(.is-secondary):not(.callout--light) h3,
+.callout.callout-black:not(.is-secondary):not(.callout--light) p,
+.callout.callout-black:not(.is-secondary):not(.callout--light) .post-excerpt {
   color: rgba(255, 255, 255, 0.6);
 }
-.callout.callout-black::before {
+.callout.callout-black:not(.is-secondary):not(.callout--light)::before {
   background: #2a2a2a;
 }
 /* ----- Callout Flush----- */
