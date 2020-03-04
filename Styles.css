@@ -1,4 +1,6 @@
-/* Styles.css - v1.7
+/* Styles.css - v1.7.1
+1.7.1
+- Callout headers have consistant colours
 1.7
 - Added more priority to callout-gray and callout-black
 1.6
@@ -101,7 +103,10 @@ hr {
 
 /* ----- Callout Gray----- */
 .callout.callout-gray:not(.is-secondary):not(.callout--light),
+.callout.callout-gray:not(.is-secondary):not(.callout--light) h1,
+.callout.callout-gray:not(.is-secondary):not(.callout--light) h2,
 .callout.callout-gray:not(.is-secondary):not(.callout--light) h3,
+.callout.callout-gray:not(.is-secondary):not(.callout--light) h4,
 .callout.callout-gray:not(.is-secondary):not(.callout--light) p,
 .callout.callout-gray:not(.is-secondary):not(.callout--light) .post-excerpt {
   color: rgba(20, 20, 20, 0.6);
@@ -117,7 +122,10 @@ hr {
 
 /* ----- Callout Black----- */
 .callout.callout-black:not(.is-secondary):not(.callout--light),
+.callout.callout-black:not(.is-secondary):not(.callout--light) h1,
+.callout.callout-black:not(.is-secondary):not(.callout--light) h2,
 .callout.callout-black:not(.is-secondary):not(.callout--light) h3,
+.callout.callout-black:not(.is-secondary):not(.callout--light) h4,
 .callout.callout-black:not(.is-secondary):not(.callout--light) p,
 .callout.callout-black:not(.is-secondary):not(.callout--light) .post-excerpt {
   color: rgba(255, 255, 255, 0.6);
