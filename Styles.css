@@ -1,4 +1,7 @@
-/* Styles.css - v1.7.1
+/* Styles.css - v1.8
+1.8
+- Added p25(Sets top and bottom padding to 25px)
+- Added Flipcard css
 1.7.1
 - Callout headers have consistant colours
 1.7
@@ -60,6 +63,10 @@ hr {
 .p0{
   padding-left: 0;
   padding-right: 0;
+}
+.p25{
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 .m0{
   margin: 0;
@@ -487,6 +494,122 @@ div.alternateBoxes > div.row:nth-child(even) > div:first-of-type + div > h2{
          -ms-flex-order: 2;
          order: 2;
     }
+}
+/*--- FLIP CARD CSS ---*/
+.flip-card {
+  perspective: 1000px;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 575px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+@media(min-width: 820px){
+  .flip-card {
+   height: 375px;
+  }
+}
+
+.flip-card-inner {
+  transition: transform 0.65s ease-in-out;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.flip-card figure {
+  /* position: relative; */
+  width: 100%;
+  height: 100%;
+}
+.flip-card figure::after {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(117, 117, 117, 0.6);
+  z-index: 3;
+}
+
+.flip-card figure > img,
+.flip-card .flip-card-back,
+.flip-card figure::after{
+  border-radius: 10px;
+}
+
+.flip-card figure > img {
+  width: 100%;
+  height: 100% !important;
+  object-fit: cover;
+  filter: blur(.75px);
+}
+
+.flip-card figure figcaption,
+.flip-card-back-inner {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  padding: 1rem;
+}
+
+.flip-card figure figcaption {
+  z-index: 4;
+  text-shadow: 1px 1px 5px rgba(24, 24, 24, 1);
+}
+.flip-card figure figcaption > *{
+  color: #fff;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  backface-visibility: hidden;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-50%);
+}
+
+.flip-card-back {
+  transform: rotateY(180deg) translateY(-50%);
+  background: #ebebeb;
+}
+
+.flip-card-back-inner>*:first-child {
+  position: relative;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.flip-card-back-inner>*:first-child::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  margin-top: 5px;
+  width: 80%;
+  height: 2px;
+  background-color: #777;
+}
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+  .flip-card:hover .flip-card-back{
+   	transition: backface-visibility .3s 0.1s;
+    backface-visibility: visible;
+  }
 }
 
 /**** CAROUSEL ****/
