@@ -1,4 +1,11 @@
-/* Styles.css - v1.8
+/* Styles.css - v1.9
+1.9
+- Added Overlay Not Fullscreen - .overlay-content.smaller
+- Added Banner push - .header-push.pushed
+- Added Card Row - .row.card-row
+- Added Card Box - .row.card-box
+- Added Smaller Member List - members-list.smaller
+- Added Larger Member Overlay - .overlay-content-wrapper.larger
 1.8
 - Added p25(Sets top and bottom padding to 25px)
 - Added Flipcard css
@@ -191,7 +198,7 @@ hr {
   z-index: 4;
   position: relative;
 }
-/* ----- Card---- */
+/* ---- Card ---- */
 .card {
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 	margin-bottom: 1rem;
@@ -206,6 +213,36 @@ hr {
 }
 a.card:hover::after{
   background:none;
+}
+
+/* ---- Card Row ---- */
+.card-row > div {
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.18);
+  transition: box-shadow .5s;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  z-index: 1;
+}
+.card-row > div:nth-of-type(2){
+  z-index: 2;
+}
+.card-row >div:hover{
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+/* ---- Card Box ---- */
+.card-box >div{
+  box-shadow: 1px 1px 1px rgba(255,255,255,0);
+  border-radius: 5px;
+  transition: .35s;
+}
+.card-box >div:hover{
+  box-shadow: 1px 1px 10px 5px #efefef;
+}
+.card-box a p{
+  color: #5c5c5c;
 }
 /* ----- Header Double Line Style----- */
 .header-double-lined{
@@ -837,4 +874,43 @@ hr.line{
   width: 90%;
   border-width: 1px;
   border-color: #00A758;
+}
+/* ----- Overlay Not Fullscreen ----- */
+ .overlay-content.smaller{
+    background: rgba(0,0,0,.5);
+  }
+ .overlay-content.smaller .overlay-content-inner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    border: 1px solid #fff;
+    background: #fff;
+    box-shadow: 2px 2px 20px 1px #616161;
+    overflow-y: scroll;
+  }
+  /*--- Banner Push ---*/
+  .header-push.pushed,
+  .header-push.pushed{
+     height: auto !important;
+     min-height: 0;
+  }
+/* ---- Member Overlay Bigger Size ----- */
+@media (min-width: 980px){
+  .overlay-content .overlay-content-wrapper.larger {
+    width: 90%;
+    max-width: 1200px;
+  }
+}
+
+/* ---- Smaller Members list ----- */
+@media (min-width: 820px){
+  #members-list.smaller,
+ .members-list.smaller {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }
