@@ -1,5 +1,7 @@
-// Scripts.js - v1.11
+// Scripts.js - v1.12
 /*
+1.2
+- Fix to closing brackets
 1.11
 - Added initSmallerOverlay()
 - Added initFormDataSwitch()
@@ -211,12 +213,12 @@ function adjustIrisScroll() {
       }, 1750, 'swing');
     }
   }
+}
 
-  function initRemoveBlogColumn() {
-    $("#posts-list").addClass("posts-wrapper");
-    $("#posts-list .column").children().unwrap();
-    $(".post-link").css("visibility", "visible");
-  }
+function initRemoveBlogColumn() {
+  $("#posts-list").addClass("posts-wrapper");
+  $("#posts-list .column").children().unwrap();
+  $(".post-link").css("visibility", "visible");
 }
 
 function initCalculators() {
