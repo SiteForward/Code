@@ -1,5 +1,11 @@
-// Scripts.js - v1.10
+// Scripts.js - v1.11
 /*
+1.11
+- Added initSmallerOverlay()
+- Added initFormDataSwitch()
+- Added adjustMembersListWidth()
+- Added adjustMembersOverlayWidth()
+- Added adjustIrisScroll()
 1.10
 - Corrected initMoveBelow to only trigger when not in edit mode
 1.9
@@ -30,6 +36,20 @@ function waitForLoad(callback){
     }
   });
 }
+function initFormDataSwitch(){
+  $("[data-formswitch]").each(function(){
+	   $($(this).data("formswitch")).hide();
+   });
+   $("[data-formswitch]").parent().on('change', function() {
+    var selected = $(this).find("option:selected");
+    var target = $($(this).find("option[data-formswitch]").data("formswitch"));
+    if (selected.data("formswitch"))
+      target.show();
+    else
+      target.hide();
+  });
+}
+
 function initHiddenRecaptcha(){
   $(".form-item.is-recaptcha").hide();
   $("form").on("change", function(){
@@ -41,6 +61,30 @@ function updateShareLinks(){
   $(".share-links li a").each(function() {
     $(this).addClass("btn secondary");
   });
+}
+
+function initSmallerOverlay(){
+  $(".overlay-content").each(function(){
+    $(this).addClass("smaller");
+    $(this).wrapInner('<div class="overlay-content-inner">', '</div>');
+  });
+
+  $(".overlay-content").off().on('click', function(event){
+    if(event.target == this){
+      $(this).find(".close-overlay").click();
+    }
+  });
+}
+function initBannerPush(){
+  $(".header-push.pushed, .header-push.pushed").addClass("pushed");
+  pushBannerImage();
+  $(window).on('resize', function(){
+    pushBannerImage();
+  });
+
+  function pushBannerImage(){
+    $(".divider.home-divider ,.page-bg").css({"margin-top": $("#header").outerHeight()+"px"});
+  }
 }
 
 var wasTransparent = true;
@@ -130,38 +174,10 @@ function updateAlternateBoxes(){
       $(e).parent().parent()[0].style="background: url("+src+"); background-size: cover; background-position: center center; min-height: 300px;";
     });
 }
-
 function initIrisScrollAdjust(){
-  function scrollToSection(slug) {
-    var headerHeight = $('#header').hasClass('overlay') ? '' : $('#header').outerHeight(),
-        scrollSettings = { duration: 900, easing: 'easeInOutQuint', offset: -headerHeight };
-
-    if ($('#section-' + slug).length && slug !== 'home') {
-      $('#section-' + slug).velocity('scroll', scrollSettings);
-    }
-  }
-
-  $('a[data-section]').on('click', function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    var slug = $(this).data('section');
-
-    if ($('#section-' + slug).length) {
-      $('#main-navigation li').removeClass('active');
-      $(this).parent('li').addClass('active');
-      history.pushState({ slug: slug }, null, '/' + (slug === 'home' ? '' : slug));
-
-      scrollToSection(slug);
-    } else {
-      window.location = '/' + slug;
-    }
-
-    if ($('.menu-toggle').is(':visible')) {
-      $('.menu-toggle.open').trigger('click');
-    }
-  });
+  adjustIrisScroll();
 }
+function adjustIrisScroll(){
 
 function initQuickScroll(){
   if (location.hash) {
@@ -521,4 +537,41 @@ function initMoveBelow(){
       content.show();
     }
   });
+}
+
+  function scrollToSection(slug) {
+    var headerHeight = $('#header').hasClass('overlay') ? '' : $('#header').outerHeight(),
+        scrollSettings = { duration: 900, easing: 'easeInOutQuint', offset: -headerHeight };
+
+    if ($('#section-' + slug).length && slug !== 'home') {
+      $('#section-' + slug).velocity('scroll', scrollSettings);
+    }
+  }
+
+  $('a[data-section]').on('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    var slug = $(this).data('section');
+
+    if ($('#section-' + slug).length) {
+      $('#main-navigation li').removeClass('active');
+      $(this).parent('li').addClass('active');
+      history.pushState({ slug: slug }, null, '/' + (slug === 'home' ? '' : slug));
+
+      scrollToSection(slug);
+    } else {
+      window.location = '/' + slug;
+    }
+
+    if ($('.menu-toggle').is(':visible')) {
+      $('.menu-toggle.open').trigger('click');
+    }
+  });
+}
+function adjustMembersListWidth(){
+  $("#members-list, .members-list").addClass("smaller");
+}
+function adjustMembersOverlayWidth(){
+  $(".overlay-content .overlay-content-wrapper").addClass("larger");
 }
