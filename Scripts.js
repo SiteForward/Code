@@ -1,5 +1,7 @@
-// Scripts.js - v1.12
+// Scripts.js - v1.13
 /*
+1.3
+- initExternalBlogDisclaimer() -> initBlogDisclaimer();
 1.2
 - Fix to closing brackets
 1.11
@@ -116,23 +118,23 @@ function updateOnTransparent(transparent, notTransparent) {
   }
 }
 
-function initExternalBlogDisclaimer(disclaimer) {
-  if ($(".blog-page").length > 0) {
+function initBlogDisclaimer(disclaimer) {
+  if ($(".blog-page, .post").length > 0) {
 
-    var hasExternalLink = false;
 
     $(".post-link").each(function(i, item) {
       item = $(item);
       var link = item.find("a");
       if (link.prop("target") == "_blank" && link.prop("href").indexOf("https://static.twentyoverten.com") != 0) {
-        hasExternalLink = true;
         item.find(".post-header").find("h3").append('<sup style="font-size:.9rem"> *</sup>');
       }
     });
-    if (hasExternalLink) {
-      var footNote = "* This article link will open in a new internet browser tab. " + disclaimer;
-      $(".posts-wrapper").append('<div class="container"><div class="main-content" id="footNote" ><p style="text-align:center" class="disclaimer">' + footNote + '</p></div></div>');
-    }
+    if(!disclaimer)
+      disclaimer = "* This article link will open in a new internet browser tab. The Advisor and Manulife Securities Incorporated and/or Manulife Securities Insurance Inc. (“Manulife Securities”) do not make any representation that the information in any linked site is accurate and will not accept any responsibility or liability for any inaccuracies in the information not maintained by them, such as linked sites. Any opinion or advice expressed in a linked site should not be construed as the opinion or advice of the advisor or Manulife Securities. The information in this communication is subject to change without notice.<br><br>The information contained herein was obtained from sources believed to be reliable, but no representation, or warranty, express or implied, is made by the writer or any other person as to its accuracy, completeness or correctness.<br><br>Any opinion or advice expressed in 3rd party articles, including the opinion of a Manulife Securities Advisor, should not be construed as, and may not reflect, the opinion or advice of Manulife Securities Incorporated and/or Manulife Securities Insurance Inc. (“Manulife Securities”) The 3rd party articles are provided for information purposes only and are not meant to provide legal accounting or account advice. As each situation is different you should consult your own professional Advisors for advice based on your specific circumstances."
+
+     $(".blog-page #page, .blog-page .content-wrapper").append('<div class="container"><div class="main-content" id="footNote" ><p style="text-align:center" class="disclaimer">' + disclaimer + '</p></div></div>');
+
+    $(".post .post-wrapper").append('<div><hr><p style="text-align:center" class="disclaimer">' + disclaimer + '</p></div>');
   }
 }
 
