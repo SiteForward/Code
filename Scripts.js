@@ -74,7 +74,7 @@ function updateShareLinks() {
 function initSmallerOverlay() {
   $(".overlay-content").each(function() {
     $(this).addClass("smaller");
-    if($this.find(".overlay-content-inner").length <= 0)
+    if($(this).find(".overlay-content-inner").length <= 0)
       $(this).wrapInner('<div class="overlay-content-inner">', '</div>');
   });
 
