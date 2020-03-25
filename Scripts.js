@@ -1,5 +1,7 @@
-// Scripts.js - v1.13
+// Scripts.js - v1.14
 /*
+1.4
+- initSmallerOverlay only wraps if not wrapped
 1.3
 - initExternalBlogDisclaimer() -> initBlogDisclaimer();
 1.2
@@ -72,7 +74,8 @@ function updateShareLinks() {
 function initSmallerOverlay() {
   $(".overlay-content").each(function() {
     $(this).addClass("smaller");
-    $(this).wrapInner('<div class="overlay-content-inner">', '</div>');
+    if($this.find(".overlay-content-inner").length <= 0)
+      $(this).wrapInner('<div class="overlay-content-inner">', '</div>');
   });
 
   $(".overlay-content").off().on('click', function(event) {
