@@ -1,5 +1,7 @@
-// Scripts.js - v1.14
+// Scripts.js - v1.15
 /*
+1.5
+- Corrected adjustIrisScroll()
 1.4
 - initSmallerOverlay only wraps if not wrapped
 1.3
@@ -194,29 +196,58 @@ function initIrisScrollAdjust() {
 }
 
 function adjustIrisScroll() {
+  function scrollToSection(slug) {
+    var headerHeight = $('#header').hasClass('overlay') ? '' : $('#header').outerHeight(),
+        scrollSettings = { duration: 900, easing: 'easeInOutQuint', offset: -headerHeight };
 
-  function initQuickScroll() {
-    if (location.hash) {
-      setTimeout(function() {
-
-        ScrollTo(location.hash);
-      }, 1);
+    if ($('#section-' + slug).length && slug !== 'home') {
+      $('#section-' + slug).velocity('scroll', scrollSettings);
     }
-    $('.content-wrapper a[href*="#"], #content a[href*="#"], .posts-wrappera[href*="#"], #main-navigation a[href^="' + this.location.pathname + '#"]').on('click', function(e) {
-      var target = e.target.hash;
+  }
 
-      if (target) {
-        ScrollTo(target);
-        e.preventDefault();
-      }
-    });
+  $('a[data-section]').on('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-    function ScrollTo(target) {
-      var element = $(target);
-      $('html, body').animate({
-        scrollTop: (element.offset().top - 150)
-      }, 1750, 'swing');
+    var slug = $(this).data('section');
+
+    if ($('#section-' + slug).length) {
+      $('#main-navigation li').removeClass('active');
+      $(this).parent('li').addClass('active');
+      history.pushState({ slug: slug }, null, '/' + (slug === 'home' ? '' : slug));
+
+      scrollToSection(slug);
+    } else {
+      window.location = '/' + slug;
     }
+
+    if ($('.menu-toggle').is(':visible')) {
+      $('.menu-toggle.open').trigger('click');
+    }
+  });
+}
+
+function initQuickScroll() {
+  if (location.hash) {
+    setTimeout(function() {
+
+      ScrollTo(location.hash);
+    }, 1);
+  }
+  $('.content-wrapper a[href*="#"], #content a[href*="#"], .posts-wrappera[href*="#"], #main-navigation a[href^="' + this.location.pathname + '#"]').on('click', function(e) {
+    var target = e.target.hash;
+
+    if (target) {
+      ScrollTo(target);
+      e.preventDefault();
+    }
+  });
+
+  function ScrollTo(target) {
+    var element = $(target);
+    $('html, body').animate({
+      scrollTop: (element.offset().top - 150)
+    }, 1750, 'swing');
   }
 }
 
