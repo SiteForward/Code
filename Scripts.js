@@ -1,12 +1,14 @@
-// Scripts.js - v1.15
+// Scripts.js - v1.16
 /*
-1.5
+1.16
+- Added initFrenchBlog()
+1.15
 - Corrected adjustIrisScroll()
-1.4
+1.14
 - initSmallerOverlay only wraps if not wrapped
-1.3
+1.13
 - initExternalBlogDisclaimer() -> initBlogDisclaimer();
-1.2
+1.12
 - Fix to closing brackets
 1.11
 - Added initSmallerOverlay()
@@ -631,4 +633,37 @@ function adjustMembersListWidth() {
 
 function adjustMembersOverlayWidth() {
   $(".overlay-content .overlay-content-wrapper").addClass("larger");
+}
+
+function initFrenchBlog(){
+ $('.form-item button[type="submit"]').html("Chercher");
+ $(".categories-title").html("catégories");
+ $(".read-more").html("<span></span>Lire Davantage");
+ $('.form-item input[name="q"]').attr("placeholder", "Entrez votre recherche...");
+ $(".prev-page").text("Page Précédente");
+ $(".next-page").text("Page Suivante");
+
+ $(".post-meta time").each(function(){
+   var time = $(this).html()
+     .replace(/January/g, "Janvier")
+     .replace(/Febuary/g, "Février")
+     .replace(/March/g, "Mars")
+     .replace(/April/g, "Avril")
+     .replace(/May/g, "Mai")
+     .replace(/June/g, "Juin")
+     .replace(/July/g, "Juillet")
+     .replace(/Augest/g, "Août")
+     .replace(/September/g, "Septembre")
+     .replace(/October/g, "Octobre")
+     .replace(/November/g, "Novembre")
+     .replace(/December/g, "Décembre")
+   $(this).html(time);
+ });
+
+ if($("#footNote .disclaimer").length > 0)
+   $("#footNote .disclaimer")[0].innerHTML ='* Le lien vers l’article s’ouvrira dans un nouvel onglet du navigateur Internet.  Avis de non-responsabilité relativement aux liens hypertextes Lien vers le site Web d’un tiers. Le représentant et Placements Manuvie incorporée ou Placements Manuvie Assurance inc. (« Placements Manuvie »)  ne donnent aucune garantie quant à l\'exactitude de l\'information contenue dans les sites liés à son propre site et ne peuvent être tenus responsables de l\'inexactitude de l\'information qu\'ils ne Contrôlent pas, comme le contenu du site liés. Les opinions ou les conseils présentés dans les sites liés à son propre site ne peuvent être interprétés comme étant des opinions ou des conseils de le représentant ou de Placements Manuvie. L’information ci‐dessus peut être modifiée sans préavis.<br><br>'+
+
+     'L’information contenue dans le présent document provient de sources jugées fiables. Toutefois, ni l’auteur ni toute autre personne n’offre aucune représentation ou garantie, explicite ou implicite, relativement à l’exactitude ou à l’exhaustivité de cette information.<br><br>'+
+
+     'Avis de non-responsabilité relativement aux opinions Cette publication est l’oeuvre seule de l’auteur, et les avis, les opinions et les recommandations sont ceux de l’auteur seulement et ne reflètent pas nécessairement ceux de Placements Manuvie incorporée ou Placements Manuvie Services d’investissement inc. ou Placements Manuvie Assurance inc. L’information contenue dans ce document vient de sources jugées fiables. Toutefois, ni l’auteur ni Placements Manuvie incorporée ou Placements Manuvie Services d’investissement inc. ou Placements Manuvie Assurance inc., ni toute autre personne n’offre aucune représentation ou garantie, explicite ou implicite, relativement à l’exactitude, à l’exhaustivité ou à la précision de cette information. Cette publication ne constitue pas une offre de vente ni la sollicitation d’une offre d’achat de quelque titre que ce soit. Les titres dont il est question dans cette publication ne sont peut‐être pas admissibles à la vente dans certaines juridictions. Si vous n’êtes pas un résident canadien, cette publication ne vous est pas destinée. Cette publication ne vise pas à offrir des conseils sur le plan juridique ou sur la gestion de compte. Chaque situation est unique; vous devriez consulter un professionnel qui sera en mesure de vous offrir des conseils en tenant compte de votre situation particulière.';
 }
