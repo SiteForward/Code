@@ -1,19 +1,21 @@
-/* Styles.css - v1.9
-1.9
+/* Styles.css - v1.10
+1.10
+- Fixed Banner push
+1.09
 - Added Overlay Not Fullscreen - .overlay-content.smaller
 - Added Banner push - .header-push.pushed
 - Added Card Row - .row.card-row
 - Added Card Box - .row.card-box
 - Added Smaller Member List - members-list.smaller
 - Added Larger Member Overlay - .overlay-content-wrapper.larger
-1.8
+1.08
 - Added p25(Sets top and bottom padding to 25px)
 - Added Flipcard css
-1.7.1
+1.07.1
 - Callout headers have consistant colours
-1.7
+1.07
 - Added more priority to callout-gray and callout-black
-1.6
+1.06
 - align-bottom-wrapped added
 - moveBelow shows wrapper selector
 - added callout-black
@@ -155,9 +157,15 @@ hr {
 .callout.flush-top{
   margin-top: -2rem;
 }
+.callout.flush-top.iris{
+  margin-top: -3rem;
+}
 @media (min-width: 820px){
   .callout.flush-top{
     margin-top: -4rem;
+  }
+  .callout.flush-top.iris{
+    margin-top: -5rem;
   }
   .callout.flush-bottom {
     margin-bottom: -4rem;
@@ -892,11 +900,11 @@ hr.line{
     overflow-y: scroll;
   }
   /*--- Banner Push ---*/
-  .header-push.pushed,
-  .header-push.pushed{
-     height: auto !important;
-     min-height: 0;
-  }
+.divider.pushedBanner .header-push,
+.page-bg.pushedBanner .header-push{
+   height: auto !important;
+   min-height: 0;
+}
 /* ---- Member Overlay Bigger Size ----- */
 @media (min-width: 980px){
   .overlay-content .overlay-content-wrapper.larger {
