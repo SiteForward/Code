@@ -91,8 +91,18 @@ function initSmallerOverlay() {
   });
 }
 
-function initBannerPush() {
-  $(".header-push").addClass("pushed");
+
+function initBannerPush(homePage, regularPage) {
+  if(!homePage)
+    homePage = true;
+  if(!regularPage)
+    regularPage = true;
+
+  if(homePage)
+    $(".divider.home-divider, .page-bg.full-screen").addClass("pushedBanner");
+  if(regularPage)
+    $(".divider:not(.home-divider), .page-bg:not(.full-screen)").addClass("pushedBanner");
+
   pushBannerImage();
 
   $(window).on('resize', function() {
@@ -100,7 +110,7 @@ function initBannerPush() {
   });
 
   function pushBannerImage() {
-    $(".divider.home-divider, .page-bg").css({
+    $(".pushedBanner").css({
       "margin-top": $("#header").outerHeight() + "px"
     });
   }
