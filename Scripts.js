@@ -1,5 +1,7 @@
-// Scripts.js - v1.16
+// Scripts.js - v1.17
 /*
+1.17
+- Fixed banner push
 1.16
 - Added initFrenchBlog()
 1.15
@@ -90,14 +92,15 @@ function initSmallerOverlay() {
 }
 
 function initBannerPush() {
-  $(".header-push.pushed, .header-push.pushed").addClass("pushed");
+  $(".header-push").addClass("pushed");
   pushBannerImage();
+
   $(window).on('resize', function() {
     pushBannerImage();
   });
 
   function pushBannerImage() {
-    $(".divider.home-divider ,.page-bg").css({
+    $(".divider.home-divider, .page-bg").css({
       "margin-top": $("#header").outerHeight() + "px"
     });
   }
