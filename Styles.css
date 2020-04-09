@@ -692,7 +692,7 @@ div.alternateBoxes > div.row:nth-child(even) > div:first-of-type + div > h2{
 .owl-theme.owl-pod .owl-dots .owl-dot span{
   transition: width .25s;
   margin: 5px;
-
+}
 .owl-theme .owl-dots.owl-line .owl-dot span,
 .owl-theme.owl-line .owl-dots .owl-dot span {
   height: 5px;
