@@ -246,17 +246,17 @@ a.card:hover::after{
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
   z-index: 3;
 }
-.card-row.seperate-4{
+.card-row.seperate-4 > div{
   margin: 5px;
   flex-basis: calc(25% - 10px);
   max-width: calc(25% - 10px);
 }
-.card-row.seperate-3{
+.card-row.seperate-3 > div{
   margin: 5px;
   flex-basis: calc(33.33333% - 10px);
   max-width: calc(33.33333% - 10px);
 }
-.card-row.seperate-2{
+.card-row.seperate-2 > div{
   margin: 5px;
   flex-basis: calc(50% - 10px);
   max-width: calc(50% - 10px);
