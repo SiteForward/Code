@@ -407,7 +407,7 @@ function initCarousel(options, useSelector, selectorStyle, rotateText, items, gl
     }
 
     //Create vars from options
-    var container = options.hasOwnProperty("container") ? options.container : 'page-bg.full-screen';
+    var container = options.hasOwnProperty("container") ? options.container : '.page-bg.full-screen';
     var useSelector = options.hasOwnProperty("useSelector") ? options.useSelector : true;
     var selectorStyle = options.hasOwnProperty("selectorStyle") ? options.selectorStyle : 'pill';
     var rotateText = options.hasOwnProperty("rotateText") ? options.rotateText : false;
