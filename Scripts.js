@@ -1,5 +1,8 @@
-// Scripts.js - v1.18
+// Scripts.js - v1.19
 /*
+1.19
+- Added option to not have disclaimer on specific pages
+- Fixed initBannerPush using false for homepage/regular page
 1.18
 - Updated initCarousel to support options object
 1.17.2
@@ -96,9 +99,9 @@ function initSmallerOverlay() {
 
 
 function initBannerPush(homePage, regularPage) {
-    if (!homePage)
+    if (homePage == undefined || homePage == null)
         homePage = true;
-    if (!regularPage)
+    if (regularPage == undefined || regularPage == null)
         regularPage = true;
 
     if (homePage)
@@ -141,11 +144,21 @@ function updateOnTransparent(transparent, notTransparent) {
     }
 }
 
-function initBlogDisclaimer(page) {
-    var disclaimer = 'The Advisor and Manulife Securities Incorporated, Manulife Securities Investment Services Inc. (“Manulife Securities”) and/or Manulife Securities Insurance Inc. do not make any representation that the information in any linked site is accurate and will not accept any responsibility or liability for any inaccuracies in the information not maintained by them, such as linked sites. Any opinion or advice expressed in a linked site should not be construed as the opinion or advice of the advisor or Manulife Securities. The information in this communication is subject to change without notice.' +
-        '<br><br>This publication contains opinions of the writer and may not reflect opinions of the Advisor and Manulife Securities Incorporated, Manulife Securities Investment Services Inc. (“Manulife Securities”) and/or Manulife Securities Insurance Inc. The information contained herein was obtained from sources believed to be reliable, no representation, or warranty, express or implied, is made by the writer, Manulife Securities or any other person as to its accuracy, completeness or correctness. This publication is not an offer to sell or a solicitation of an offer to buy any of the securities. The securities discussed in this publication may not be eligible for sale in some jurisdictions. If you are not a Canadian resident, this report should not have been delivered to you. This publication is not meant to provide legal or account advice. As each situation is different you should consult your own professional Advisors for advice based on your specific circumstances.';
+function initBlogDisclaimer(notPages) {
+  var notOnPage = ":not(.client-login)";
 
-    if ($(".blog-page:not(.client-login), .post").length > 0) {
+  if(notPages){
+    if(typeof notPages == "string")
+      notPages = [notPages];
+    notPages.forEach(item => {
+      notOnPage+=":not(."+item+")";
+    });
+  }
+
+  var disclaimer = 'The Advisor and Manulife Securities Incorporated, Manulife Securities Investment Services Inc. (“Manulife Securities”) and/or Manulife Securities Insurance Inc. do not make any representation that the information in any linked site is accurate and will not accept any responsibility or liability for any inaccuracies in the information not maintained by them, such as linked sites. Any opinion or advice expressed in a linked site should not be construed as the opinion or advice of the advisor or Manulife Securities. The information in this communication is subject to change without notice.' +
+  '<br><br>This publication contains opinions of the writer and may not reflect opinions of the Advisor and Manulife Securities Incorporated, Manulife Securities Investment Services Inc. (“Manulife Securities”) and/or Manulife Securities Insurance Inc. The information contained herein was obtained from sources believed to be reliable, no representation, or warranty, express or implied, is made by the writer, Manulife Securities or any other person as to its accuracy, completeness or correctness. This publication is not an offer to sell or a solicitation of an offer to buy any of the securities. The securities discussed in this publication may not be eligible for sale in some jurisdictions. If you are not a Canadian resident, this report should not have been delivered to you. This publication is not meant to provide legal or account advice. As each situation is different you should consult your own professional Advisors for advice based on your specific circumstances.';
+
+    if ($(".blog-page" + notOnPage + ", .post").length > 0) {
         $(".post-link").each(function(i, item) {
             item = $(item);
             var link = item.find("a");
@@ -153,7 +166,7 @@ function initBlogDisclaimer(page) {
                 item.find(".post-header").find("h3").append('<sup style="font-size:.9rem"> *</sup>');
             }
         });
-        $(".blog-page:not(.client-login) #page, .blog-page:not(.client-login) .content-wrapper").append('<div class="container"><div class="main-content" id="footNote" ><p style="text-align:center" class="disclaimer">' + '* This article link will open in a new internet browser tab.<br>' + disclaimer + '</p></div></div>');
+        $(".blog-page" + notOnPage + " #page, .blog-page" + notOnPage + " .content-wrapper").append('<div class="container"><div class="main-content" id="footNote" ><p style="text-align:center" class="disclaimer">' + '* This article link will open in a new internet browser tab.<br>' + disclaimer + '</p></div></div>');
         $(".post .post-wrapper").append('<div><hr><p style="text-align:center" class="disclaimer">' + disclaimer + '</p></div>');
     }
 }
