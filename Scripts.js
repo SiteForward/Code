@@ -1,5 +1,8 @@
-// Scripts.js - v1.19
+// Scripts.js - v1.20
 /*
+
+1.20
+- initQuickScroll now applies to sub navigation links
 1.19
 - Added option to not have disclaimer on specific pages
 - Fixed initBannerPush using false for homepage/regular page
@@ -268,7 +271,7 @@ function initQuickScroll() {
             ScrollTo(location.hash);
         }, 1);
     }
-    $('.content-wrapper a[href*="#"], #content a[href*="#"], .posts-wrappera[href*="#"], #main-navigation a[href^="' + this.location.pathname + '#"]').on('click', function(e) {
+    $('.content-wrapper a[href*="#"], #content a[href*="#"], .posts-wrappera[href*="#"], #main-navigation a[href^="' + this.location.pathname + '#"], #sub-navigation a[href^="' + this.location.pathname + '#"]').on('click', function(e) {
         var target = e.target.hash;
 
         if (target) {
@@ -396,6 +399,7 @@ function initCarousel(options, useSelector, selectorStyle, rotateText, items, gl
         options = {
             'container': options,
             'useSelector': useSelector,
+            'selectorStyle': selectorStyle,
             'rotateText': rotateText,
             'items': items
         }
