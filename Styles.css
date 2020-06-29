@@ -1,6 +1,8 @@
-/* Styles.css - v1.13.1
+/* Styles.css - v1.14
+1.14
+- Added base website css
 1.13.1
-- Updated .card-row.seperate-# to .card-row.seperate 
+- Updated .card-row.seperate-# to .card-row.seperate
 1.13
 - Added .card-row.seperate-#
 1.12
@@ -32,6 +34,16 @@
 */
 
 
+/* -- AFFECT ALL SITES -- */
+
+/* Remove overflow */
+html{
+  overflow-x: hidden;
+}
+/* Left align client login text */
+.blog-page.client-login .post-link{
+   text-align: left;
+ }
 /* ----- Base----- */
 hr {
   margin: 3em auto;
@@ -89,22 +101,22 @@ hr {
   margin: 0;
 }
 
-.align-bottom > div{
+.align-bottom > *{
   display: flex;
   flex-direction: column;
 }
 
-.align-bottom > div > *:last-child{
+.align-bottom > * > *:last-child{
  margin-top: auto;
 }
 
-.align-bottom-wrapped > div > div{
+.align-bottom-wrapped > * > *{
   display: flex;
   flex-direction: column;
 }
 
-.align-bottom-wrapped > div > div > *:last-child{
- margin-top: auto;
+.align-bottom-wrapped > * > * > *:last-child{
+  margin-top: auto;
 }
 
 /* ----- Mobile Header Fix ----- */
