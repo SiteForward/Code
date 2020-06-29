@@ -1,6 +1,8 @@
-// Scripts.js - v1.20
+// Scripts.js - v1.21
 /*
 
+1.21
+- initBannerPush only affects the home divider now instead of all dividers
 1.20
 - initQuickScroll now applies to sub navigation links
 1.19
@@ -110,7 +112,7 @@ function initBannerPush(homePage, regularPage) {
     if (homePage)
         $(".divider.home-divider, .page-bg.full-screen").addClass("pushedBanner");
     if (regularPage)
-        $(".divider:not(.home-divider), .page-bg:not(.full-screen)").addClass("pushedBanner");
+        $(".page-bg:not(.full-screen)").addClass("pushedBanner");
 
     pushBannerImage();
 
