@@ -37,7 +37,7 @@
 /* -- AFFECT ALL SITES -- */
 
 /* Remove overflow */
-html{
+body{
   overflow-x: hidden;
 }
 /* Left align client login text */
