@@ -1,4 +1,6 @@
-/* Styles.css - v1.15
+/* Styles.css - v1.16
+1.16
+- Added p5,p10,p15,p20
 1.15
 - Added 'Need Answers?' callout alignment fix
 1.14
@@ -94,6 +96,22 @@ hr {
 .p0{
   padding-left: 0;
   padding-right: 0;
+}
+.p5{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.p10{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.p15{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.p20{
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .p25{
   padding-top: 25px;
