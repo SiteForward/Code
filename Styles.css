@@ -998,15 +998,16 @@ hr.line{
 }
 
 /* ----- Need Answers callout alignment fix ----- */
-.need-answers-callout.callout .sidebar h1 {
+.need-answers-callout.callout aside h1 {
   text-align: left;
   padding: 0;
   margin-top: 0;
+  line-height: 1;
 }
 
 @media (min-width: 820px) {
-  .need-answers-callout.callout .sidebar h1 {
+  .need-answers-callout.callout aside h1 {
     text-align: right;
-    margin-top: 20px;
+    margin-top: 0px;
   }
 }
