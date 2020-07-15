@@ -1,4 +1,6 @@
-/* Styles.css - v1.14
+/* Styles.css - v1.15
+1.15
+- Added 'Need Answers?' callout alignment fix
 1.14
 - Added base website css
 1.13.1
@@ -974,5 +976,19 @@ hr.line{
     width: 80%;
     max-width: 1200px;
     margin: 0 auto;
+  }
+}
+
+/* ----- Need Answers callout alignment fix ----- */
+.need-answers-callout .callout .sidebar-left h1 {
+  text-align: left;
+  padding: 0;
+  margin-top: 0;
+}
+
+@media (min-width: 820px) {
+  .need-answers-callout .callout .sidebar-left h1 {
+    text-align: right;
+    margin-top: 20px;
   }
 }
