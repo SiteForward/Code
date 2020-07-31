@@ -1,4 +1,6 @@
-/* Styles.css - v1.16
+/* Styles.css - v1.17
+1.17
+- Added fix for Our Process icons alignment
 1.16
 - Added p5,p10,p15,p20
 1.15
@@ -1008,5 +1010,26 @@ hr.line{
   .need-answers-callout.callout aside h1 {
     text-align: right;
     margin-top: 0px;
+  }
+}
+
+/* OUR PROCESS ICONS ALIGNMENT FIX */
+.icon-container img {
+    width: 110px;
+    display: block;
+    height: auto;
+    margin: 0 0 20px auto;
+}
+
+.callout-gray .icon-container img {
+    width: 110px;
+    display: block;
+    height: auto;
+    margin: 0 auto 20px 0;
+}
+
+@media (max-width: 819px) {
+  .icon-container img {
+      margin: 0 auto 30px !important;
   }
 }
