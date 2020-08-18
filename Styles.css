@@ -1,4 +1,6 @@
-/* Styles.css - v1.18
+/* Styles.css - v1.19
+1.19
+- Adjusted card row separate css
 1.18
 - Added fix for owl carousel not being full height on smaller screens
 1.17
@@ -295,20 +297,26 @@ a.card:hover::after{
     flex-basis: calc(100% - 10px);
     max-width: calc(100% - 10px);
 }
-.card-row.seperate > div.col-sm-6{
-  margin: 5px;
-  flex-basis: calc(50% - 10px);
-  max-width: calc(50% - 10px);
+@media screen and (min-width: 820px){
+  .card-row.seperate > div.col-sm-6{
+    margin: 5px;
+    flex-basis: calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
 }
-.card-row.seperate > div.col-md-4{
-  margin: 5px;
-  flex-basis: calc(33.33333% - 10px);
-  max-width: calc(33.33333% - 10px);
+@media screen and (min-width: 980px){
+  .card-row.seperate > div.col-md-4{
+    margin: 5px;
+    flex-basis: calc(33.33333% - 10px);
+    max-width: calc(33.33333% - 10px);
+  }
 }
-.card-row.seperate > div.col-lg-3{
-  margin: 5px;
-  flex-basis: calc(25% - 10px);
-  max-width: calc(25% - 10px);
+@media screen and (min-width: 1300px){
+  .card-row.seperate > div.col-lg-3{
+    margin: 5px;
+    flex-basis: calc(25% - 10px);
+    max-width: calc(25% - 10px);
+  }
 }
 /* ---- Card Box ---- */
 .card-box >div{
