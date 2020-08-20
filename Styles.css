@@ -1,4 +1,6 @@
-/* Styles.css - v1.19
+/* Styles.css - v1.2
+1.2
+- Updated Headerline styling
 1.19
 - Adjusted card row separate css
 1.18
@@ -330,44 +332,44 @@ a.card:hover::after{
 .card-box a p{
   color: #5c5c5c;
 }
-/* ----- Header Double Line Style----- */
-.header-double-lined{
-  position: relative;
+/* ----- Header Line Style ----- */
+/* (Still supports header-double-lined) */
+.header-line,
+.header-double-lined {
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+.header-line span,
+.header-double-lined span{
+  margin: 0 10px;
+  flex-shrink: 0;
+  line-height: 1;
 }
 
-.header-double-lined span{
-  position: relative;
-  background: #fff;
-  padding-right: 10px;
-  padding-left: 10px;
-  margin-left: 3rem;
-  z-index: -1;
+.header-line[style*=right]::before,
+.header-double-lined[style*=right]::before,
+.header-line[style*=center]::before,
+.header-double-lined[style*=center]::before,
+.header-line:not([style*=right])::after,
+.header-double-lined:not([style*=right])::after{
+   display: block;
+   content: '';
+   border-top: 1px solid #333;
+   flex-grow: 1;
 }
-.header-double-lined[style*=center] span{
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-left: 0;
+
+.header-double-lined[style*=center]::before,
+.header-line.double[style*=center]::before,
+.header-double-lined[style*=right]::before,
+.header-line.double[style*=right]::before,
+.header-double-lined:not([style*=right])::after,
+.header-line.double:not([style*=right])::after{
+  height: 10px;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
 }
-.header-double-lined[style*=right] span{
-  padding-right: 10px;
-  padding-left: 10px;
-  margin-right: 3rem;
-}
-.header-double-lined::before, .header-double-lined::after{
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  background: #aaa;
-  z-index: -2;
-  right: 0;
-}
-.header-double-lined:before{
-  top:40%;
-}
-.header-double-lined:after{
-  top:60%;
-}
+
 
 /* ----- Header Single Line Style----- */
 .header-underlined{
