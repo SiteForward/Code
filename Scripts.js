@@ -273,7 +273,7 @@ function initQuickScroll() {
             ScrollTo(location.hash);
         }, 1);
     }
-    $('.content-wrapper a[href*="#"], #content a[href*="#"], .posts-wrappera[href*="#"], #main-navigation a[href^="' + this.location.pathname + '#"], #sub-navigation a[href^="' + this.location.pathname + '#"]').off().on('click', function(e) {
+    $('.content-wrapper a[href*="#"], #content a[href*="#"], .posts-wrappera[href*="#"], #main-navigation a[href^="' + this.location.pathname + '#"], #sub-navigation a[href^="' + this.location.pathname + '#"]').on('click', function(e) {
         var target = $(this).attr("href");
 
         if (target && target != '#' && $(target).length) {
