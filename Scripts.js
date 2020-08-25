@@ -1,6 +1,6 @@
-// Scripts.js - v1.22
+// Scripts.js - v1.22.1
 /*
-1.22
+1.22-1.22.1
 - Fixed initQuickScroll
 1.21
 - initBannerPush only affects the home divider now instead of all dividers
@@ -276,7 +276,7 @@ function initQuickScroll() {
     $('.content-wrapper a[href*="#"], #content a[href*="#"], .posts-wrappera[href*="#"], #main-navigation a[href^="' + this.location.pathname + '#"], #sub-navigation a[href^="' + this.location.pathname + '#"]').off().on('click', function(e) {
         var target = $(this).attr("href");
 
-        if (target) {
+        if (target && target != '#' && $(target).length) {
             ScrollTo(target);
             e.preventDefault();
         }
@@ -284,9 +284,9 @@ function initQuickScroll() {
 
     function ScrollTo(target) {
         var element = $(target);
-        $('html, body').animate({
-            scrollTop: (element.offset().top - 150)
-        }, 1750, 'swing');
+          $('html, body').animate({
+              scrollTop: (element.offset().top - 150)
+          }, 1750, 'swing');
     }
 }
 
