@@ -1,5 +1,7 @@
-// Scripts.js - v1.22.1
+// Scripts.js - v1.23
 /*
+1.23
+- Updated initCalculators to use custom formulas
 1.22-1.22.1
 - Fixed initQuickScroll
 1.21
@@ -297,83 +299,140 @@ function initRemoveBlogColumn() {
 }
 
 function initCalculators() {
-    $(".calculator").each(function() {
-        let $calc = $(this);
-        calculate($calc);
-        $calc.find("input").off().on('change', function() {
-            calculate($calc);
-        });
+  let calcs = document.querySelectorAll(".calculator");
+  for (let i = 0; i < calcs.length; i++) {
+    calculate(calcs[i]);
+    calcs[i].addEventListener("change", function() {
+      calculate(calcs[i]);
     });
+  }
 
-    function calculate($calc) {
-        let calcType = $calc.attr('id');
+  function calculate(calc) {
 
-        switch (calcType) {
-            case "savings-retirement": {
-                let total = 0.0;
-                let init = parseFloat($calc.find("#initialDeposit").val());
-                let monthly = parseFloat($calc.find("#monthlyDeposit").val());
-                let rate = parseFloat($calc.find("#interestRate").val());
-                let years = parseFloat($calc.find("#years").val());
+    //Get math and inputs
+    let math = calc.hasAttribute("data-math") ? calc.getAttribute("data-math"):"";
+    let inputs = calc.querySelectorAll("input");
 
-                let j = rate / 1200;
-                let f = years * 12;
-                let subTotal = init + monthly * ((1 - (1 / Math.pow((1 + j), f))) / j);
-                total = subTotal * Math.pow((1 + j), f);
-                total = Math.round(total * 100) / 100;
-                $calc.find(".total").find("input").val(total);
+  	//Preset formulas for old calculators
+    let calcId = calc.id;
+    if (calcId == "savings-retirement")
+      math = "(#1+(#2*((1-(1/((1+(#3/1200))^(#4*12))))/(#3/1200))))*((1+(#3/1200))^(#4*12))";
+    if (calcId == "credit-card")
+      math = "(#1*((#2/(12*100))*((1+(#2/(12*100)))^#3))/(((1+(#2/(12*100)))^#3)-1))";
+    if (calcId == "bank-loan")
+      math = "(#1*((#2/(12*100))*((1+(#2/(12*100)))^(#3*12)))/(((1+(#2/(12*100)))^(#3*12))-1))";
+    if (calcId == "auto-loan")
+      math = "(#1*(#2/(12*100)*((1+(#2/(12*100)))^#3))/(((1+(#2/(12*100)))^#3)-1))";
 
-                break;
-            }
-            case "credit-card": {
-                let total = 0.0;
-                let balance = parseFloat($calc.find("#balance").val());
-                let rate = parseFloat($calc.find("#interestRate").val());
-                let months = parseFloat($calc.find("#months").val());
-                let g = rate / (12 * 100);
-                let e = months;
-                let h = (g * Math.pow((1 + g), e));
-                let p = (Math.pow((1 + g), e) - 1);
-                total = (balance * h / p);
-                total = Math.round(total * 100) / 100;
-                $calc.find(".total").find("input").val(total);
 
-                break;
-            }
-            case "bank-loan": {
-                let total = 0.0;
-                let loanAmount = parseFloat($calc.find("#loanAmount").val());
-                let rate = parseFloat($calc.find("#interestRate").val());
-                let years = parseFloat($calc.find("#years").val());
+    // Evaluate the power operator(Because JS doesn't know how to do this)
+    if (math.indexOf("^") > 0)
+      math = evaluatePower(math);
 
-                let g = rate / (12 * 100);
-                let e = years * 12;
-                let h = (g * Math.pow((1 + g), e));
-                let q = (Math.pow((1 + g), e) - 1);
-                total = (loanAmount * h / q);
-                total = Math.round(total * 100) / 100;
-                $calc.find(".total").find("input").val(total);
-
-                break;
-            }
-            case "auto-loan": {
-                let total = 0.0;
-                let loanAmount = parseFloat($calc.find("#loanAmount").val());
-                let rate = parseFloat($calc.find("#interestRate").val());
-                let months = parseFloat($calc.find("#months").val());
-
-                let g = rate / (12 * 100);
-                let e = months;
-                let h = (g * Math.pow((1 + g), e));
-                let q = (Math.pow((1 + g), e) - 1);
-                total = (loanAmount * h / q);
-                total = Math.round(total * 100) / 100;
-                $calc.find(".total").find("input").val(total);
-
-                break;
-            }
-        }
+    //Replace #1.. with input[1]
+    for (let i = 0; i < inputs.length; i++) {
+      var regex = new RegExp("#" + (i + 1), "g");
+      math = math.replace(regex, inputs[i].value);
     }
+
+    //Evaluate(Not safe, but I doubt anything dangerous can happen with math)
+    math = eval(math);
+
+    //Round, and display
+    math = Math.round(math * 100) / 100;
+    calc.querySelectorAll("input")[calc.querySelectorAll("input").length-1].value = math;
+  };
+
+  function evaluatePower(expression) {
+
+    //Math Operators
+    let mathOperators = "+-*/^";
+
+    //Search whole expression
+    for (let letter = 0; letter < expression.length; letter++) {
+
+      //If power is found
+      if (expression[letter] == '^') {
+
+        let leftIndex = -1;
+        let rightIndex = -1;
+
+        //LEFT
+        //If previous char was a closing bracket
+        if (expression[letter - 1] == ')') {
+          //Count how many brackets
+          let brackets = 0;
+          //Reverse through the string
+          for (let letter2 = letter - 1; letter2 >= 0; letter2--) {
+            //If another closing bracket is found
+            if (expression[letter2] == ')')
+              brackets++
+            //If closing a bracket
+            if (expression[letter2] == '(')
+              brackets--;
+            //If opening bracket found, and no other brackets opened
+            if (brackets == 0) {
+              leftIndex = letter2;
+              break;
+            }
+          }
+        } else {
+          //Go backwards looking for a math operator
+          for (let letter2 = letter; letter2 >= 0; letter2--) {
+            if (letter2 == 0)
+              leftIndex = 0;
+            else if (mathOperators.indexOf(expression[letter2]) > 0) {
+              leftIndex = letter2;
+            }
+
+          }
+        }
+        //RIGHT
+        if (expression[letter + 1] == '(') {
+          //Count how many brackets
+          let brackets = 0;
+          //Forward through the string
+          for (let letter2 = letter + 1; letter2 <= expression.length; letter2++) {
+            //If another closing bracket is found
+            if (expression[letter2] == '(')
+              brackets++;
+            //If closing a bracket
+            if (expression[letter2] == ')')
+              brackets--;
+            //If opening bracket found, and no other brackets opened
+            if (brackets == 0) {
+              rightIndex = letter2 + 1;
+              break;
+            }
+          }
+        } else {
+          //Go forwards looking for a math operator
+          for (let letter2 = letter; letter2 <= expression.length; letter2++) {
+            if (letter2 == expression.length)
+              rightIndex = expression.length;
+            else if (mathOperators.indexOf(expression[letter2]) > 0) {
+              rightIndex = letter2 + 1;
+            }
+          }
+        }
+
+        //Edit the expression
+        let leftExpression = expression.substring(leftIndex, letter);
+        let rightExpression = expression.substring(letter, rightIndex);
+        let replacedExpression = leftExpression + rightExpression;
+        let replaceWithExpression = "Math.pow(" + leftExpression + ", " + rightExpression.substring(1) + ")";
+
+        expression = expression.replace(replacedExpression, replaceWithExpression);
+
+      }
+    }
+    //Run again if needed
+    if (expression.indexOf("^") > 0)
+      return evaluatePower(expression);
+    else
+      return expression;
+  }
+
 }
 
 function initSlideshow() {
