@@ -1,5 +1,7 @@
-// Scripts.js - v1.24
+// Scripts.js - v1.24.1
 /*
+1.24.1
+- Fixed issue with calculators if not one of our .calculator divs
 1.24
 - Added initServiceCarousel()
 1.23
@@ -358,7 +360,8 @@ function initCalculators() {
 
     //Round, and display
     math = Math.round(math * 100) / 100;
-    calc.querySelectorAll("input")[calc.querySelectorAll("input").length-1].value = math;
+    if(!!calc.querySelectorAll("input").length && calc.querySelectorAll("input")[calc.querySelectorAll("input").length-1])
+	   calc.querySelectorAll("input")[calc.querySelectorAll("input").length-1].value = math;
   };
 
   function evaluatePower(expression) {
