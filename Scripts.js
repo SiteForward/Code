@@ -1,5 +1,7 @@
-// Scripts.js - v1.23
+// Scripts.js - v1.24
 /*
+1.24
+- Added initServiceCarousel()
 1.23
 - Updated initCalculators to use custom formulas
 1.22-1.22.1
@@ -46,6 +48,22 @@
 1.6
 - Added option to define just alignment in initCarousel
 */
+
+// INITIALIZE TABBED ICON CAROUSEL
+function initServiceCarousel() {
+    if (!window.suppress) {
+      console.log('services carousels');
+      var owl = $('.services-carousel').owlCarousel({
+          items: 1,
+          loop: true,
+          autoplay: false,
+          autoplayTimeout: 10000,
+          dotsSpeed: 300,
+          dotsData: true,
+          dotsContainer: '.tabbed-icon-nav-container'
+      });
+    }
+}
 function waitForJQuery(callback) {
     var checkLoop = setInterval(function() {
         if (typeof $ !== 'undefined') {
