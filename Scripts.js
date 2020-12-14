@@ -1,5 +1,7 @@
-// Scripts.js - v1.25
+// Scripts.js - v1.25.1
 /*
+1.25.1
+- Fixed carousel's overlay being onop when not using rotating text
 1.25
 - Added pause button to carousel
 1.24.1
@@ -604,12 +606,14 @@ function initCarousel(options, useSelector, selectorStyle, rotateText, items, gl
     if (pupilFramework)
         e = e.find(".overlay-wrapper");
 
-    e.wrapInner('<div class="owl-carousel owl-theme banner-carousel ' +(selectorStyle != null ? 'owl-' + selectorStyle : '') + '" ' + (intrinsic ? '' : 'style="position: absolute') + '">', '</div>');
+    e.wrapInner('<div class="owl-carousel owl-theme banner-carousel" ' + (intrinsic ? '' : 'style="position: absolute') + '">', '</div>');
 
     $(container).find(".banner-carousel").wrapInner('<div class="item">', '</div>');
 
+
     //Add the other items
     $(container).find(".banner-carousel").append(containerItems);
+
 
     //Add Selector
     var e1 = $(container);
@@ -620,8 +624,7 @@ function initCarousel(options, useSelector, selectorStyle, rotateText, items, gl
     var owl = $(container).find(".banner-carousel").owlCarousel(owlCarouselSettings);
     owl.on('changed.owl.carousel', function(e) {
         owl.trigger('stop.owl.autoplay');
-        if(!$(container).find(".banner-carousel").hasClass("paused"))
-          owl.trigger('play.owl.autoplay');
+        owl.trigger('play.owl.autoplay');
     });
 
     let pauseBtn = $('<a class="owl-pause" title="Pause/Play carousel"><i class="fas fa-pause"></i></a>')
@@ -646,13 +649,17 @@ function initCarousel(options, useSelector, selectorStyle, rotateText, items, gl
     });
     $(container).find(".banner-carousel").append(pauseBtn);
 
-
     //If text is not rotating, re-add overlay
     if (!rotateText) {
         var e2 = $(container);
-        if (pupilFramework)
-            e2 = e2.find(".overlay-wrapper");
-        e2.append(overlayCopy);
+        if (pupilFramework){
+          $(container).css('min-height', '65vh');
+          $(container).find(".banner-carousel").css("height","auto");
+        }
+
+         if(overlayCopy)
+           overlayCopy[0].style = "position: absolute;z-index: 1;top: 0;left: 0;width: 100%;";
+        $(container).find(".banner-carousel").append(overlayCopy);
     } else if (pupilFramework) {
         $(container).find(".overlay-wrapper").append(overlayCopyPlaceholder);
     }
