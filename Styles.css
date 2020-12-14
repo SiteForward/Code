@@ -1,4 +1,8 @@
-/* Styles.css - v1.2
+/* Styles.css - v1.22
+1.22
+- Added more seperate card-row classes
+1.21
+- Owl Caroulse tab through selectors
 1.2
 - Updated Headerline styling
 1.19
@@ -295,25 +299,70 @@ a.card:hover::after{
   z-index: 3;
 }
 .card-row.seperate > div.col-xs-12{
-    margin: 5px;
-    flex-basis: calc(100% - 10px);
-    max-width: calc(100% - 10px);
+  margin: 5px;
+  flex-basis: calc(100% - 10px);
+  max-width: calc(100% - 10px);
 }
 @media screen and (min-width: 820px){
+  .card-row.seperate > div.col-sm-8{
+    margin: 5px;
+    flex-basis: calc(66.66667% - 10px);
+    max-width: calc(66.66667% - 10px);
+  }
   .card-row.seperate > div.col-sm-6{
     margin: 5px;
     flex-basis: calc(50% - 10px);
     max-width: calc(50% - 10px);
   }
+  .card-row.seperate > div.col-sm-4{
+    margin: 5px;
+    flex-basis: calc(33.33333% - 10px);
+    max-width: calc(33.33333% - 10px);
+  }
+  .card-row.seperate > div.col-sm-3{
+    margin: 5px;
+    flex-basis: calc(25% - 10px);
+    max-width: calc(25% - 10px);
+  }
 }
 @media screen and (min-width: 980px){
+  .card-row.seperate > div.col-md-8{
+    margin: 5px;
+    flex-basis: calc(66.66667% - 10px);
+    max-width: calc(66.66667% - 10px);
+  }
+  .card-row.seperate > div.col-md-6{
+    margin: 5px;
+    flex-basis: calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
   .card-row.seperate > div.col-md-4{
     margin: 5px;
     flex-basis: calc(33.33333% - 10px);
     max-width: calc(33.33333% - 10px);
   }
+  .card-row.seperate > div.col-md-3{
+    margin: 5px;
+    flex-basis: calc(25% - 10px);
+    max-width: calc(25% - 10px);
+  }
 }
 @media screen and (min-width: 1300px){
+  .card-row.seperate > div.col-lg-8{
+    margin: 5px;
+    flex-basis: calc(66.66667% - 10px);
+    max-width: calc(66.66667% - 10px);
+  }
+  .card-row.seperate > div.col-lg-6{
+    margin: 5px;
+    flex-basis: calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
+  .card-row.seperate > div.col-lg-4{
+    margin: 5px;
+    flex-basis: calc(33.33333% - 10px);
+    max-width: calc(33.33333% - 10px);
+  }
   .card-row.seperate > div.col-lg-3{
     margin: 5px;
     flex-basis: calc(25% - 10px);
@@ -749,20 +798,30 @@ div.alternateBoxes > div.row:nth-child(even) > div:first-of-type + div > h2{
   background: #869791;
 }
 .owl-theme .owl-dots .owl-dot.active span,
-.owl-theme .owl-dots .owl-dot:hover span {
+.owl-theme .owl-dots .owl-dot:hover span,
+.owl-theme .owl-dots .owl-dot:focus span {
   background: rgb(214, 214, 214);
 }
 
 .owl-theme.owl-pill .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots.owl-pill .owl-dot.active span,
 .owl-theme.owl-pill .owl-dots .owl-dot:hover span,
-.owl-theme .owl-dots.owl-pill .owl-dot:hover span {
+.owl-theme .owl-dots.owl-pill .owl-dot:hover span
+
+.owl-theme.owl-pill .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots.owl-pill .owl-dot.active span,
+.owl-theme.owl-pill .owl-dots .owl-dot:hover span,
+.owl-theme .owl-dots.owl-pill .owl-dot:hover span,
+.owl-theme.owl-pill .owl-dots .owl-dot:focus span,
+.owl-theme .owl-dots.owl-pill .owl-dot:focus span {
   height: 20px;
 }
 .owl-theme.owl-pod .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots.owl-pod .owl-dot.active span,
 .owl-theme.owl-pod .owl-dots .owl-dot:hover span,
-.owl-theme .owl-dots.owl-pod .owl-dot:hover span {
+.owl-theme .owl-dots.owl-pod .owl-dot:hover span,
+.owl-theme.owl-pod .owl-dots .owl-dot:focus span,
+.owl-theme .owl-dots.owl-pod .owl-dot:focus span {
   width: 20px;
 }
 .owl-theme .owl-dots.owl-pill .owl-dot span,
