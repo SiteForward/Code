@@ -1,4 +1,6 @@
-/* Styles.css - v1.3
+/* Styles.css - v1.31
+1.31
+- Added pause styling for carousel
 1.3
 - Added styles for Tabbed Services Carousel
 1.22
@@ -793,6 +795,21 @@ div.alternateBoxes > div.row:nth-child(even) > div:first-of-type + div > h2{
 }
 
 /**** CAROUSEL ****/
+.owl-theme .owl-dots{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 2
+}
+.owl-pause{
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #fff;
+  z-index: 3;
+  opacity: 0.75
+}
 .owl-theme .owl-dots button.owl-dot {
   padding: 0 !important;
 }
