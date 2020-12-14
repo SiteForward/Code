@@ -1,5 +1,7 @@
-// Scripts.js - v1.24.1
+// Scripts.js - v1.25
 /*
+1.25
+- Added pause button to carousel
 1.24.1
 - Fixed issue with calculators if not one of our .calculator divs
 1.24
@@ -526,8 +528,7 @@ function initCarousel(options, useSelector, selectorStyle, rotateText, items, gl
         autoplayTimeout: 5000,
         autoplaySpeed: 1000,
         dotsSpeed: 1000,
-        dots: useSelector,
-        dotsContainer: '.dots-selector .owl-dots'
+        dots: useSelector
     };
 
     //Overwrite Owl Carousel Settings if valid in the options
@@ -603,28 +604,48 @@ function initCarousel(options, useSelector, selectorStyle, rotateText, items, gl
     if (pupilFramework)
         e = e.find(".overlay-wrapper");
 
-    e.wrapInner('<div class="owl-carousel owl-theme banner-carousel" ' + (intrinsic ? '' : 'style="position: absolute') + '">', '</div>');
+    e.wrapInner('<div class="owl-carousel owl-theme banner-carousel ' +(selectorStyle != null ? 'owl-' + selectorStyle : '') + '" ' + (intrinsic ? '' : 'style="position: absolute') + '">', '</div>');
 
     $(container).find(".banner-carousel").wrapInner('<div class="item">', '</div>');
 
-
     //Add the other items
     $(container).find(".banner-carousel").append(containerItems);
-
 
     //Add Selector
     var e1 = $(container);
     if (pupilFramework && !rotateText)
         e1 = e1.find(".overlay-wrapper");
 
-    e1.append('<div class="dots-selector owl-theme" style="position: absolute;width: 100%; bottom: 10px; z-index: 2;"><div class="owl-dots ' + (selectorStyle != null ? 'owl-' + selectorStyle : '') + '">', '</div></div>');
-
     //Start Carousel
     var owl = $(container).find(".banner-carousel").owlCarousel(owlCarouselSettings);
     owl.on('changed.owl.carousel', function(e) {
         owl.trigger('stop.owl.autoplay');
-        owl.trigger('play.owl.autoplay');
+        if(!$(container).find(".banner-carousel").hasClass("paused"))
+          owl.trigger('play.owl.autoplay');
     });
+
+    let pauseBtn = $('<a class="owl-pause" title="Pause/Play carousel"><i class="fas fa-pause"></i></a>')
+    pauseBtn.on("click", function(){
+      let $owl = $(container).find(".banner-carousel");
+      let $owlData = $('.banner-carousel').data('owl.carousel');
+      if($owl.hasClass("paused")){
+        //Unpause
+        $owl.removeClass("paused");
+        $owl.trigger('play.owl.autoplay');
+        $owlData.settings.autoplay = true;
+        $owlData.options.autoplay = true;
+        this.innerHTML = '<i class="fas fa-pause"></i>';
+      }else{
+        //Pause
+        $owl.addClass("paused");
+        $owl.trigger('stop.owl.autoplay');
+        $owlData.settings.autoplay = false;
+        $owlData.options.autoplay = false;
+        this.innerHTML = '<i class="fas fa-play"></i>';
+      }
+    });
+    $(container).find(".banner-carousel").append(pauseBtn);
+
 
     //If text is not rotating, re-add overlay
     if (!rotateText) {
