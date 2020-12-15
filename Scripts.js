@@ -1,5 +1,7 @@
-// Scripts.js - v1.25.1
+// Scripts.js - v1.25.2
 /*
+1.25.2
+- Re-added selectorStyle to carousel
 1.25.1
 - Fixed carousel's overlay being onop when not using rotating text
 1.25
@@ -606,7 +608,7 @@ function initCarousel(options, useSelector, selectorStyle, rotateText, items, gl
     if (pupilFramework)
         e = e.find(".overlay-wrapper");
 
-    e.wrapInner('<div class="owl-carousel owl-theme banner-carousel" ' + (intrinsic ? '' : 'style="position: absolute') + '">', '</div>');
+    e.wrapInner('<div class="owl-carousel owl-theme banner-carousel '+(selectorStyle ? 'owl-'+selectorStyle : '')+'" ' + (intrinsic ? '' : 'style="position: absolute') + '">', '</div>');
 
     $(container).find(".banner-carousel").wrapInner('<div class="item">', '</div>');
 
