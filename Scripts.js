@@ -1,5 +1,7 @@
-// Scripts.js - v1.25.2
+// Scripts.js - v1.25.3
 /*
+1.25.3
+- Fixed error with carousel if no valid container found
 1.25.2
 - Re-added selectorStyle to carousel
 1.25.1
@@ -482,6 +484,7 @@ function initSlideshow() {
 
 
 function initCarousel(options, useSelector, selectorStyle, rotateText, items, globalStyle, alignY) {
+
     //Check if options is a string (Supports older websites)
     if (typeof options === 'string' || options instanceof String) {
         options = {
@@ -524,6 +527,11 @@ function initCarousel(options, useSelector, selectorStyle, rotateText, items, gl
     var x = options.hasOwnProperty("x") ? options.x : 'center';
     var y = options.hasOwnProperty("y") ? options.y : 'center';
 
+    //Stop if the container isn't valid
+    if($(container).length == 0){
+      console.log('No container '+options.container+' was found');
+      return;
+    }
     //Owl Carousel Settings
     var owlCarouselSettings = {
         items: 1,
@@ -659,7 +667,7 @@ function initCarousel(options, useSelector, selectorStyle, rotateText, items, gl
           $(container).find(".banner-carousel").css("height","auto");
         }
 
-         if(overlayCopy)
+         if(overlayCopy.length > 0)
            overlayCopy[0].style = "position: absolute;z-index: 1;top: 0;left: 0;width: 100%;";
         $(container).find(".banner-carousel").append(overlayCopy);
     } else if (pupilFramework) {
