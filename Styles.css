@@ -1,4 +1,6 @@
-/* Styles.css - v1.31
+/* Styles.css - v1.32
+1.32
+- Adjusted owl dots and pause colours for AODA contrasts
 1.31
 - Added pause styling for carousel
 1.3
@@ -806,20 +808,24 @@ div.alternateBoxes > div.row:nth-child(even) > div:first-of-type + div > h2{
   position: absolute;
   bottom: 10px;
   right: 10px;
-  color: #fff;
+  color: #cccccc;
   z-index: 3;
   opacity: 0.75
+}
+.owl-pause:hover,
+.owl-carousel.paused .owl-pause{
+  color: #f1f1f1;
 }
 .owl-theme .owl-dots button.owl-dot {
   padding: 0 !important;
 }
 .owl-theme .owl-dots .owl-dot span {
-  background: #869791;
+  background: #808080;
 }
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span,
 .owl-theme .owl-dots .owl-dot:focus span {
-  background: rgb(214, 214, 214);
+  background: #eaeaea;
 }
 
 .owl-theme.owl-pill .owl-dots .owl-dot.active span,
