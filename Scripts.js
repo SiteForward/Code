@@ -634,7 +634,8 @@ function initCarousel(options, useSelector, selectorStyle, rotateText, items, gl
     var owl = $(container).find(".banner-carousel").owlCarousel(owlCarouselSettings);
     owl.on('changed.owl.carousel', function(e) {
         owl.trigger('stop.owl.autoplay');
-        owl.trigger('play.owl.autoplay');
+        if(!$(container).find(".banner-carousel").hasClass("paused"))
+          owl.trigger('play.owl.autoplay');
     });
 
     let pauseBtn = $('<a class="owl-pause" title="Pause/Play carousel"><i class="fas fa-pause"></i></a>')
