@@ -1,4 +1,7 @@
-/* Styles.css - v1.33
+/* Styles.css - v1.34
+1.34
+- Added .callout-dealer-logos
+- Fixed selector for .icon-container img
 1.33
 - Fixed header-line on mobile not wrapping
 - flush-top and flush-bottom work for non-callouts
@@ -1410,7 +1413,8 @@ hr.line{
   .tabbed-icon-nav-container .owl-dot .owl-dot-btn svg {
     max-height: 70px;
   }
-}ainer img {
+}
+.icon-container img {
     width: 110px;
     display: block;
     height: auto;
@@ -1428,4 +1432,41 @@ hr.line{
   .icon-container img {
       margin: 0 auto 30px !important;
   }
+}
+
+/*------------------------------
+Footer Dealer Logos
+--------------------------------*/
+
+
+.callout.callout-dealer-logos {
+  padding: 1em 0;
+  margin-bottom: 2em;
+  margin-top: 0;
+}
+
+.dealer-logos-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.callout-dealer-logos::before {
+  background: rgba(255,255,255,.2);
+}
+
+.dealer-logos-container a {
+  max-width: 225px;
+  position: relative;
+  margin: 10px 15px;
+  max-height: 50px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.dealer-logos-container a img {
+  max-height: 100%;
+  flex: 0;
 }
