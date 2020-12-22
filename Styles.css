@@ -1,4 +1,11 @@
-/* Styles.css - v1.32
+/* Styles.css - v1.33
+1.33
+- Fixed header-line on mobile not wrapping
+- flush-top and flush-bottom work for non-callouts
+- Added Fancy Icon unordered lists(.split & .icons)
+- Added .hover-rows
+- Added .shadowed-box
+- Added .not-full
 1.32
 - Adjusted owl dots and pause colours for AODA contrasts
 1.31
@@ -214,30 +221,30 @@ hr {
   background: #2a2a2a;
 }
 /* ----- Callout Flush----- */
-.callout.flush-bottom {
+.flush-bottom {
   margin-bottom: -2rem;
 }
 
-.callout.flush-top{
+.flush-top{
   margin-top: -2rem;
 }
-.callout.flush-top.iris{
+.flush-top.iris{
   margin-top: -3rem;
 }
 @media (min-width: 820px){
-  .callout.flush-top{
+  .flush-top{
     margin-top: -4rem;
   }
-  .callout.flush-top.iris{
+  .flush-top.iris{
     margin-top: -5rem;
   }
-  .callout.flush-bottom {
+  .flush-bottom {
     margin-bottom: -4rem;
   }
 }
 
-.callout.flush-bottom p:last-child,
-.callout.flush-top p:last-child{
+.flush-bottom p:last-child,
+.flush-top p:last-child{
   margin-bottom: 0;
 }
 /* ----- Callout Image----- */
@@ -398,7 +405,6 @@ a.card:hover::after{
 .header-line span,
 .header-double-lined span{
   margin: 0 10px;
-  flex-shrink: 0;
   line-height: 1;
 }
 
@@ -679,6 +685,74 @@ div.alternateBoxes > div.row:nth-child(even) > div:first-of-type + div > h2{
          order: 2;
     }
 }
+
+
+/*Fancy list icons*/
+ul.split,
+ul.icons{
+  list-style: none;
+  padding-left: 0;
+}
+ul.icons > li,
+ul.split > li{
+  display: flex;
+  position: relative;
+  transition: color .3s;
+}
+ul.split{
+  padding-bottom: 10px;
+}
+ul.split > li:not(:first-child){
+  margin-top: 10px;
+}
+
+ul.split > li:not(:last-child)::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border-top: 1px solid #ddd;
+}
+
+ul.icons > li > .list-icon,
+ul.icons > li > i{
+  flex-shrink: 0;
+}
+ul.icons > li > .list-content{
+  padding-left: 10px;
+  align-self: center;
+  display: inline;
+}
+ul.icons > li > a:not(:hover){
+  color: #5c5c5c;
+}
+
+/*Shadowed Box Row*/
+@media (min-width: 820px){
+  .not-full{
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+.shadowed-box{
+  box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.35);
+  padding: 10px 20px;
+}
+
+/*Hover row*/
+.hover-row > div{
+  transition: all .7s;
+  border-radius: 5px;
+}
+.hover-row > div:hover{
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+
 /*--- FLIP CARD CSS ---*/
 .flip-card {
   perspective: 1000px;
