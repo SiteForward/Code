@@ -1,4 +1,6 @@
-/* Styles.css - v1.34
+/* Styles.css - v1.35
+1.35
+- Added .mobile-spaced
 1.34
 - Added .callout-dealer-logos
 - Fixed selector for .icon-container img
@@ -1469,4 +1471,11 @@ Footer Dealer Logos
 .dealer-logos-container a img {
   max-height: 100%;
   flex: 0;
+}
+/* ROW DIVS SPACING FOR MOBILE */
+/* ADD .mobile-spaced CLASS TO .row */
+@media (max-width: 819px) {
+  .row.mobile-spaced > div:not(:last-child) {
+    margin-bottom: 30px;
+  }
 }
