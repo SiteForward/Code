@@ -1,4 +1,6 @@
-/* Styles.css - v1.35
+/* Styles.css - v1.36
+1.36
+- Owl Dots no longer apply to slideshows
 1.35
 - Added .mobile-spaced
 1.34
@@ -876,7 +878,7 @@ ul.icons > li > a:not(:hover){
 }
 
 /**** CAROUSEL ****/
-.owl-theme .owl-dots{
+.owl-theme:not(.owl-slideshow) .owl-dots{
   position: absolute;
   bottom: 0;
   width: 100%;
