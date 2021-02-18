@@ -1,4 +1,6 @@
-/* Styles.css - v1.38
+/* Styles.css - v1.39
+1.39
+- Added flush-top to footer with -3
 1.38
 - dealer-logos only sets margin if after another callout
 1.37
@@ -252,6 +254,9 @@ hr {
   .flush-bottom {
     margin-bottom: -4rem;
   }
+}
+.footer .callout.callout-dealer-logos .flush-top{
+  margin-top: -3rem;
 }
 
 .flush-bottom p:last-child,
