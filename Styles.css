@@ -1,4 +1,6 @@
-/* Styles.css - v1.37
+/* Styles.css - v1.38
+1.38
+- dealer-logos only sets margin if after another callout
 1.37
 - Added overflow scrolling to flip-cards
 1.36
@@ -1449,10 +1451,12 @@ Footer Dealer Logos
 --------------------------------*/
 
 
-.callout.callout-dealer-logos {
-  padding: 1em 0;
+.callout + .callout.callout-dealer-logos {
   margin-bottom: 2em;
   margin-top: 0;
+}
+.callout.callout-dealer-logos {
+  padding: 1em 0;
 }
 
 .dealer-logos-container {
