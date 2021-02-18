@@ -93,6 +93,7 @@ function waitForLoad(callback) {
         }
     });
 }
+
 function waitForBlogs(callback){
      var checkLoop = setInterval(function() {
        if ($('.posts-list').find(".loading").length != 1) {
@@ -330,12 +331,15 @@ function initQuickScroll() {
     }
 }
 
+//Remove Columns from blog page
 function initRemoveBlogColumns() {
   waitForBlogs(() =>{
-    $(".posts-list").addClass("posts-wrapper");
-    $(".posts-list .column").children().unwrap();
-    $(".post-link").css("visibility", "visible");
-    $(".post-link").sort( (a,b) => {
+    let posts = $(".posts-list");
+    posts.addClass("posts-wrapper");
+    posts.find(".column").children().unwrap();
+    // $(".post-link").css("visibility", "visible"); <-- Used to be needed, not sure if it still is
+    posts.find(".post-link").sort( (a,b) => {
+      //Compare dates
       a = $(a).find("time").attr("datetime").split("-");
       b = $(b).find("time").attr("datetime").split("-");
 
@@ -346,6 +350,10 @@ function initRemoveBlogColumns() {
     }).each(function(){
       $(".posts-list").append(this);
     });
+
+   //Clone to prevent resize event from re-creating with columns
+    let postsClone = posts.clone();
+    posts.replaceWith(postsClone);
   });
 }
 
