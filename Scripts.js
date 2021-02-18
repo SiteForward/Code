@@ -1,5 +1,7 @@
-// Scripts.js - v1.25.3
+// Scripts.js - v1.26
 /*
+1.26
+- Added WaitForBlogs() and fixed up initRemoveBlogColumns()
 1.25.3
 - Fixed error with carousel if no valid container found
 1.25.2
@@ -91,6 +93,14 @@ function waitForLoad(callback) {
         }
     });
 }
+function waitForBlogs(callback){
+     var checkLoop = setInterval(function() {
+       if ($('.posts-list').find(".loading").length != 1) {
+           clearInterval(checkLoop);
+           callback();
+       }
+   });
+ }
 
 function initFormDataSwitch() {
     $("[data-formswitch]").each(function() {
@@ -320,10 +330,23 @@ function initQuickScroll() {
     }
 }
 
-function initRemoveBlogColumn() {
-    $("#posts-list").addClass("posts-wrapper");
-    $("#posts-list .column").children().unwrap();
+function initRemoveBlogColumns() {
+  waitForBlogs(() =>{
+    $(".posts-list").addClass("posts-wrapper");
+    $(".posts-list .column").children().unwrap();
     $(".post-link").css("visibility", "visible");
+    $(".post-link").sort( (a,b) => {
+      a = $(a).find("time").attr("datetime").split("-");
+      b = $(b).find("time").attr("datetime").split("-");
+
+      a = new Date(a[0], a[1], a[2]);
+      b = new Date(b[0], b[1], b[2]);
+
+      return a > b ? -1 : 1;
+    }).each(function(){
+      $(".posts-list").append(this);
+    });
+  });
 }
 
 function initCalculators() {
