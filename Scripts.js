@@ -1,5 +1,9 @@
-// Scripts.js - v1.26
+// Scripts.js - v1.26.2
 /*
+1.26.2
+- initRemoveBlogColumns(waitForBlogsToLoad)  Will default to true if no params given
+1.26.1
+- initRemoveBlogColumns will clone and replace it's self to remove any resize events
 1.26
 - Added WaitForBlogs() and fixed up initRemoveBlogColumns()
 1.25.3
@@ -332,8 +336,13 @@ function initQuickScroll() {
 }
 
 //Remove Columns from blog page
-function initRemoveBlogColumns() {
-  waitForBlogs(() =>{
+function initRemoveBlogColumns(waitForBlogsToLoad) {
+  if(waitForBlogsToLoad == null || waitForBlogsToLoad)
+    waitForBlogs(run);
+  else
+    run();
+
+  function run(){
     let posts = $(".posts-list");
     posts.addClass("posts-wrapper");
     posts.find(".column").children().unwrap();
@@ -351,10 +360,10 @@ function initRemoveBlogColumns() {
       $(".posts-list").append(this);
     });
 
-   //Clone to prevent resize event from re-creating with columns
+    //Clone to prevent resize event from re-creating with columns
     let postsClone = posts.clone();
     posts.replaceWith(postsClone);
-  });
+  }
 }
 
 function initCalculators() {
