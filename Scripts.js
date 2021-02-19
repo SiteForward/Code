@@ -1,5 +1,7 @@
-// Scripts.js - v1.26.2
+// Scripts.js - v1.26.3
 /*
+1.26.3
+- initRemoveBlogColumns will use ID or class
 1.26.2
 - initRemoveBlogColumns(waitForBlogsToLoad)  Will default to true if no params given
 1.26.1
@@ -343,7 +345,7 @@ function initRemoveBlogColumns(waitForBlogsToLoad) {
     run();
 
   function run(){
-    let posts = $(".posts-list");
+    let posts = ($("#posts-list").length) ? $("#posts-list") : $(".posts-list");
     posts.addClass("posts-wrapper");
     posts.find(".column").children().unwrap();
     // $(".post-link").css("visibility", "visible"); <-- Used to be needed, not sure if it still is
