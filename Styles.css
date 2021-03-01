@@ -1,4 +1,9 @@
-/* Styles.css - v1.4
+/* Styles.css - v1.6
+1.6
+- re-add Edit styles for .financial-calculators section on Resources page
+- re-added .text-left-desktop for Manulife logo img in footers
+1.5
+- re-add CSS for MFDA dealer logo .in-footer
 1.4
 - Added CSS for Services Carousel with AutoHeight
 1.39
@@ -1564,6 +1569,16 @@ Footer Dealer Logos
   background: rgba(255,255,255,.2);
 }
 
+.callout-dealer-logos.in-footer::before {
+  background: transparent;
+}
+
+.callout.callout-dealer-logos.in-footer {
+  padding: 0;
+  margin-bottom: 1em;
+  margin-top: 0;
+}
+
 .dealer-logos-container a {
   max-width: 225px;
   position: relative;
@@ -1584,4 +1599,38 @@ Footer Dealer Logos
   .row.mobile-spaced > div:not(:last-child) {
     margin-bottom: 30px;
   }
+}
+
+.text-left-desktop {
+  text-align: center;
+}
+
+@media (min-width: 820px) {
+  .text-left-desktop {
+    text-align: left;
+  }
+}
+
+/* FINANCIAL CALCULATORS CARDS */
+.financial-calculators a {
+  display: block;
+}
+
+.financial-calculators i.fa-2x {
+  font-size: 1.5em;
+}
+
+.financial-calculators a p:last-child {
+  color: #5c5c5c;
+  line-height: 1.5;
+  margin-bottom: 0;
+  font-size: .9em;
+}
+
+.financial-calculators a h4 {
+  margin-bottom: .5em;
+}
+
+.financial-calculators .card-row > div {
+  padding: 1.25rem 1rem 1rem;
 }
