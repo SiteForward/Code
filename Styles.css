@@ -1454,7 +1454,7 @@ hr.line{
   padding: 20px 40px;
 }
 
-body #section-services .owl-carousel.owl-theme.services-carousel-auto-height .owl-item .item {
+#section-services:not(.page-section.section) .owl-carousel.owl-theme.services-carousel-auto-height .owl-item .item {
   max-width: none;
   padding: 0;
   margin: 0 auto;
@@ -1510,17 +1510,17 @@ body #section-services .owl-carousel.owl-theme.services-carousel-auto-height .ow
 }
 
 @media (min-width: 820px) {
-  body #section-services .main-content-wrapper > .container {
+  #section-services:not(.page-section.section) .main-content-wrapper > .container {
     width: 100%;
     max-width: none;
   }
 
-  body #section-services .main-content-wrapper .heading-container {
+  #section-services:not(.page-section.section) .main-content-wrapper .heading-container {
     width: 80%;
     max-width: 1200px;
   }
 
-  body #section-services .owl-carousel.owl-theme.services-carousel-auto-height .owl-item .item {
+  #section-services:not(.page-section.section) .owl-carousel.owl-theme.services-carousel-auto-height .owl-item .item {
     max-width: none;
     padding: 0;
   }
