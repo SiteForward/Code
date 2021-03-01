@@ -1,4 +1,6 @@
-/* Styles.css - v1.6
+/* Styles.css - v1.6.1
+1.6.1
+- #section-services and financial calcualtors will only apply if within the body tag
 1.6
 - re-add Edit styles for .financial-calculators section on Resources page
 - re-added .text-left-desktop for Manulife logo img in footers
@@ -1452,7 +1454,7 @@ hr.line{
   padding: 20px 40px;
 }
 
-#section-services .owl-carousel.owl-theme.services-carousel-auto-height .owl-item .item {
+body #section-services .owl-carousel.owl-theme.services-carousel-auto-height .owl-item .item {
   max-width: none;
   padding: 0;
   margin: 0 auto;
@@ -1508,23 +1510,23 @@ hr.line{
 }
 
 @media (min-width: 820px) {
-  #section-services .main-content-wrapper > .container {
+  body #section-services .main-content-wrapper > .container {
     width: 100%;
     max-width: none;
   }
-  
-  #section-services .main-content-wrapper .heading-container {
+
+  body #section-services .main-content-wrapper .heading-container {
     width: 80%;
     max-width: 1200px;
   }
-  
-  #section-services .owl-carousel.owl-theme.services-carousel-auto-height .owl-item .item {
+
+  body #section-services .owl-carousel.owl-theme.services-carousel-auto-height .owl-item .item {
     max-width: none;
     padding: 0;
   }
 }
-/* END SERVICES CAROUSEL WITH AUTO HEIGHT */
 
+/* END SERVICES CAROUSEL WITH AUTO HEIGHT */
 .icon-container img {
     width: 110px;
     display: block;
@@ -1548,7 +1550,6 @@ hr.line{
 /*------------------------------
 Footer Dealer Logos
 --------------------------------*/
-
 
 .callout + .callout.callout-dealer-logos {
   margin-top: 0;
@@ -1612,25 +1613,25 @@ Footer Dealer Logos
 }
 
 /* FINANCIAL CALCULATORS CARDS */
-.financial-calculators a {
+body .financial-calculators a {
   display: block;
 }
 
-.financial-calculators i.fa-2x {
+body .financial-calculators i.fa-2x {
   font-size: 1.5em;
 }
 
-.financial-calculators a p:last-child {
+body .financial-calculators a p:last-child {
   color: #5c5c5c;
   line-height: 1.5;
   margin-bottom: 0;
   font-size: .9em;
 }
 
-.financial-calculators a h4 {
+body .financial-calculators a h4 {
   margin-bottom: .5em;
 }
 
-.financial-calculators .card-row > div {
+body .financial-calculators .card-row > div {
   padding: 1.25rem 1rem 1rem;
 }
