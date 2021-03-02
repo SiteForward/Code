@@ -1,5 +1,7 @@
-/* Styles.css - v1.6.1
-1.6.1
+/* Styles.css - v1.62
+1.62
+- dealer-logos no longer sets margins if flush-top(1.3.8 fix didn't work on IRIS Frameworks)
+1.61
 - #section-services and financial calcualtors will only apply if within the body tag
 1.6
 - re-add Edit styles for .financial-calculators section on Resources page
@@ -243,15 +245,19 @@ hr {
   background: #2a2a2a;
 }
 /* ----- Callout Flush----- */
-.flush-bottom {
-  margin-bottom: -2rem;
-}
 
 .flush-top{
   margin-top: -2rem;
 }
 .flush-top.iris{
   margin-top: -3rem;
+}
+
+.flush-bottom {
+  margin-bottom: -2rem;
+}
+.flush-bottom.iris{
+  margin-bottom: -5rem;
 }
 @media (min-width: 820px){
   .flush-top{
@@ -263,9 +269,6 @@ hr {
   .flush-bottom {
     margin-bottom: -4rem;
   }
-}
-.footer .callout.callout-dealer-logos.flush-top{
-  margin-top: -3rem;
 }
 
 .flush-bottom p:last-child,
@@ -1551,11 +1554,10 @@ hr.line{
 Footer Dealer Logos
 --------------------------------*/
 
-.callout + .callout.callout-dealer-logos {
-  margin-top: 0;
-}
-.callout.callout-dealer-logos {
+.callout.callout-dealer-logos{
   padding: 1em 0;
+}
+.callout.callout-dealer-logos:not(.flush-top) {
   margin-bottom: 2em;
 }
 
