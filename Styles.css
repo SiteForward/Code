@@ -1569,6 +1569,10 @@ hr.line{
 Footer Dealer Logos
 --------------------------------*/
 
+.callout + .callout-dealer-logos{
+  margin-top: 0;
+}
+
 .callout.callout-dealer-logos{
   padding: 1em 0;
 }
