@@ -92,7 +92,7 @@
 
 /* Remove overflow */
 body{
-  overflow: hidden;
+  overflow-x: hidden;
 }
 /* Left align client login text */
 .blog-page.client-login .post-link{
