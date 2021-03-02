@@ -1,4 +1,6 @@
-/* Styles.css - v1.62
+/* Styles.css - v1.63
+1.63
+- Cleaned up .flush-top and .flush-bottom with .iris
 1.62
 - dealer-logos no longer sets margins if flush-top(1.3.8 fix didn't work on IRIS Frameworks)
 1.61
@@ -90,7 +92,7 @@
 
 /* Remove overflow */
 body{
-  overflow-x: hidden;
+  overflow: hidden;
 }
 /* Left align client login text */
 .blog-page.client-login .post-link{
@@ -247,33 +249,46 @@ hr {
 /* ----- Callout Flush----- */
 
 .flush-top{
-  margin-top: -2rem;
+ margin-top: -2rem;
 }
 .flush-top.iris{
-  margin-top: -3rem;
+ margin-top: -3rem;
+}
+.footer .flush-top{
+ margin-top: -1rem;
+}
+.footer .flush-top.iris{
+ margin-top: -4rem;
 }
 
 .flush-bottom {
-  margin-bottom: -2rem;
+ margin-bottom: -2rem;
 }
-.flush-bottom.iris{
-  margin-bottom: -5rem;
-}
+
 @media (min-width: 820px){
-  .flush-top{
-    margin-top: -4rem;
-  }
-  .flush-top.iris{
-    margin-top: -5rem;
-  }
-  .flush-bottom {
-    margin-bottom: -4rem;
-  }
+ .flush-top{
+   margin-top: -4rem;
+ }
+ .flush-top.iris{
+   margin-top: -5rem;
+ }
+ .footer .flush-top{
+   margin-top: -2.5rem;
+ }
+ .footer .flush-top.iris{
+   margin-top: -4rem;
+ }
+ .flush-bottom {
+   margin-bottom: -4rem;
+ }
+ .flush-bottom.iris{
+   margin-bottom: -5rem;
+ }
 }
 
 .flush-bottom p:last-child,
 .flush-top p:last-child{
-  margin-bottom: 0;
+ margin-bottom: 0;
 }
 /* ----- Callout Image----- */
 .callout-image:before {
