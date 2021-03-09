@@ -1,4 +1,6 @@
-/* Styles.css - v1.63
+/* Styles.css - v1.64
+1.64
+- Added .card-row.dark - Will change background and text colours of cards to allow for dark background
 1.63
 - Cleaned up .flush-top and .flush-bottom with .iris
 1.62
@@ -347,6 +349,10 @@ a.card:hover::after{
   padding-bottom: 15px;
   z-index: 1;
 }
+.card-row.dark > div{
+  background: #2d2d2d;
+}
+
 .card-row > div:nth-of-type(2){
   z-index: 2;
 }
@@ -770,6 +776,9 @@ ul.icons > li > .list-content{
 }
 ul.icons > li > a:not(:hover){
   color: #5c5c5c;
+}
+.card-row.dark ul.icons > li > a:not(:hover) {
+    color: #c5c5c5;
 }
 
 /*Shadowed Box Row*/
@@ -1647,6 +1656,10 @@ body .financial-calculators a p:last-child {
   line-height: 1.5;
   margin-bottom: 0;
   font-size: .9em;
+}
+
+body .financial-calculators .card-row.dark a p:last-child{
+  color: #c5c5c5;
 }
 
 body .financial-calculators a h4 {
