@@ -1,5 +1,7 @@
-// Scripts.js - v1.27
+// Scripts.js - v1.27.1
 /*
+1.27.1
+- initRemoveBlogColumns sets blogs to visible(Fresnel hides them for some reason)
 1.27
 - added initServiceCarouselAutoH()
 1.26.3
@@ -367,7 +369,7 @@ function initRemoveBlogColumns(waitForBlogsToLoad) {
     let posts = ($("#posts-list").length) ? $("#posts-list") : $(".posts-list");
     posts.addClass("posts-wrapper");
     posts.find(".column").children().unwrap();
-    // $(".post-link").css("visibility", "visible"); <-- Used to be needed, not sure if it still is
+     $(".post-link").css("visibility", "visible");
     posts.find(".post-link").sort( (a,b) => {
       //Compare dates
       a = $(a).find("time").attr("datetime").split("-");
