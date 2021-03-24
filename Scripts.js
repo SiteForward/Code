@@ -1,5 +1,7 @@
-// Scripts.js - v1.29
+// Scripts.js - v1.30
 /*
+1.30
+- Fixed newly introduced error in initBlogDisclaimer
 1.29
 - Updated initBlogDisclaimer([Pages_To_Ignore]) to also hide disclaimer on posts if told to
 1.28
@@ -238,10 +240,11 @@ function initBlogDisclaimer(notPages) {
 var putOnPage = true;
 var pagePath  = window.location.pathname;
 
-for(var i = 0; i < notPages.length; i++){
-  if(pagePath.indexOf(notPages[i]) > -1)
-    putOnPage = false;
-}
+if(notPages != null)
+  for(var i = 0; i < notPages.length; i++){
+    if(pagePath.indexOf(notPages[i]) > -1)
+      putOnPage = false;
+  }
     if (($(".blog-page").length > 0||$(".post").length > 0) && putOnPage) {
         $(".post-link").each(function(i, item) {
             item = $(item);
