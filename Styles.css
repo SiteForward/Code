@@ -1,4 +1,7 @@
-/* Styles.css - v1.64
+/* Styles.css - v1.65
+1.65
+- Added .card-row.lighter - Will change background to white with a .24 opacity
+- Added .card-row.darker - Will change background to black with a .24 opacity
 1.64
 - Added .card-row.dark - Will change background and text colours of cards to allow for dark background
 1.63
@@ -351,6 +354,12 @@ a.card:hover::after{
 }
 .card-row.dark > div{
   background: #2d2d2d;
+}
+.card-row.lighter > div{
+  background: #ffffff3d;
+}
+.card-row.lighter > div{
+  background: #1111113d;
 }
 
 .card-row > div:nth-of-type(2){
@@ -1213,6 +1222,7 @@ hr.line{
    height: auto !important;
    min-height: 0;
 }
+
 /* ---- Member Overlay Bigger Size ----- */
 @media (min-width: 980px){
   .overlay-content .overlay-content-wrapper.larger {
