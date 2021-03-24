@@ -1,7 +1,10 @@
-// Scripts.js - v1.27.1
+// Scripts.js - v1.29
 /*
-1.27.1
+1.29
+- Updated initBlogDisclaimer([Pages_To_Ignore]) to also hide disclaimer on posts if told to
+1.28
 - initRemoveBlogColumns sets blogs to visible(Fresnel hides them for some reason)
+- Re-adds sorted posts to propper post wrapper
 1.27
 - added initServiceCarouselAutoH()
 1.26.3
@@ -232,7 +235,14 @@ function initBlogDisclaimer(notPages) {
   var disclaimer = 'The Advisor and Manulife Securities Incorporated, Manulife Securities Investment Services Inc. (“Manulife Securities”) and/or Manulife Securities Insurance Inc. do not make any representation that the information in any linked site is accurate and will not accept any responsibility or liability for any inaccuracies in the information not maintained by them, such as linked sites. Any opinion or advice expressed in a linked site should not be construed as the opinion or advice of the advisor or Manulife Securities. The information in this communication is subject to change without notice.' +
   '<br><br>This publication contains opinions of the writer and may not reflect opinions of the Advisor and Manulife Securities Incorporated, Manulife Securities Investment Services Inc. (“Manulife Securities”) and/or Manulife Securities Insurance Inc. The information contained herein was obtained from sources believed to be reliable, no representation, or warranty, express or implied, is made by the writer, Manulife Securities or any other person as to its accuracy, completeness or correctness. This publication is not an offer to sell or a solicitation of an offer to buy any of the securities. The securities discussed in this publication may not be eligible for sale in some jurisdictions. If you are not a Canadian resident, this report should not have been delivered to you. This publication is not meant to provide legal or account advice. As each situation is different you should consult your own professional Advisors for advice based on your specific circumstances.';
 
-    if ($(".blog-page" + notOnPage + ", .post").length > 0) {
+var putOnPage = true;
+var pagePath  = window.location.pathname;
+
+for(var i = 0; i < notPages.length; i++){
+  if(pagePath.indexOf(notPages[i]) > -1)
+    putOnPage = false;
+}
+    if (($(".blog-page").length > 0||$(".post").length > 0) && putOnPage) {
         $(".post-link").each(function(i, item) {
             item = $(item);
             var link = item.find("a");
@@ -366,7 +376,7 @@ function initRemoveBlogColumns(waitForBlogsToLoad) {
     run();
 
   function run(){
-    let posts = ($("#posts-list").length) ? $("#posts-list") : $(".posts-list");
+    let posts = $("#posts-list, .posts-list");
     posts.addClass("posts-wrapper");
     posts.find(".column").children().unwrap();
      $(".post-link").css("visibility", "visible");
@@ -380,7 +390,7 @@ function initRemoveBlogColumns(waitForBlogsToLoad) {
 
       return a > b ? -1 : 1;
     }).each(function(){
-      $(".posts-list").append(this);
+      posts.append(this);
     });
 
     //Clone to prevent resize event from re-creating with columns
