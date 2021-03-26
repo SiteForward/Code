@@ -358,7 +358,7 @@ a.card:hover::after{
 .card-row.lighter > div{
   background: #ffffff3d;
 }
-.card-row.lighter > div{
+.card-row.darker > div{
   background: #1111113d;
 }
 
