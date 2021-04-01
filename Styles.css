@@ -1,4 +1,6 @@
-/* Styles.css - v1.65
+/* Styles.css - v1.66
+1.66
+- Added Swiper Carousel CSS
 1.65
 - Added .card-row.lighter - Will change background to white with a .24 opacity
 - Added .card-row.darker - Will change background to black with a .24 opacity
@@ -103,13 +105,7 @@ body{
 .blog-page.client-login .post-link{
    text-align: left;
  }
-/* Fix for owl carousel not being full height on smaller screens */
-.owl-carousel,
-.owl-carousel .owl-stage-outer,
-.owl-carousel .owl-stage,
-.owl-carousel .owl-item {
-  height: 100%;
-}
+
 /* ----- Base----- */
 hr {
   margin: 3em auto;
@@ -935,7 +931,15 @@ ul.icons > li > a:not(:hover){
   }
 }
 
-/**** CAROUSEL ****/
+/**** Owl Carousel ****/
+
+/* Fix for owl carousel not being full height on smaller screens */
+.owl-carousel,
+.owl-carousel .owl-stage-outer,
+.owl-carousel .owl-stage,
+.owl-carousel .owl-item {
+  height: 100%;
+}
 .owl-theme:not(.owl-slideshow) .owl-dots{
   position: absolute;
   bottom: 0;
@@ -1051,6 +1055,108 @@ ul.icons > li > a:not(:hover){
   border-radius: 4px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+
+/* ------------ Swiper Carousel ------------ */
+
+/* Swiper Height Fixes */
+.swiper-carousel .overlay{
+  height: 100% !important;
+}
+
+.swiper-carousel .swiper-slide {
+  height: auto;
+}
+
+/* Swiper Pause button */
+.swiper-pause {
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #cccccc;
+  z-index: 10;
+  opacity: 0.75;
+}
+
+.swiper-pause:hover,
+.swiper-pause:focus {
+  color: #f1f1f1;
+}
+
+/* Swiper Navigation Buttons */
+.swiper-pagination-bullet {
+  background: #eaeaea;
+  margin: 5px;
+  padding: 0;
+  width: 10px;
+  height: 10px;
+  transition: all 0.25s;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.swiper-carousel .swiper-pagination-bullet:hover,
+.swiper-carousel .swiper-pagination-bullet:focus,
+.swiper-carousel .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  /* Intentionally left empty */
+}
+
+/* Swiper Navigation Buttons - Pill */
+.swiper-pagination-bullet.pill {
+  border-radius: 30px;
+}
+
+.swiper-pagination-bullet.pill:hover,
+.swiper-pagination-bullet.pill:focus,
+.swiper-pagination-bullet.pill.swiper-pagination-bullet-active {
+  height: 20px;
+}
+
+/* Swiper Navigation Buttons - Pill-h */
+.swiper-pagination-bullet.pill-h {
+  border-radius: 30px;
+}
+
+.swiper-pagination-bullet.pill-h:hover,
+.swiper-pagination-bullet.pill-h:focus,
+.swiper-pagination-bullet.pill-h.swiper-pagination-bullet-active {
+  width: 20px;
+}
+
+/* Swiper Navigation Buttons - Line */
+.swiper-pagination-bullet.line {
+  width: 20px;
+  height: 5px;
+  border-radius: 2px;
+}
+
+.swiper-pagination-bullet.line:hover,
+.swiper-pagination-bullet.line:focus,
+.swiper-pagination-bullet.line.swiper-pagination-bullet-active {
+  /* Intentionally left empty */
+}
+
+/* Swiper Navigation Buttons - Circle */
+.swiper-pagination-bullet.circle {
+  border-radius: 100%;
+}
+
+.swiper-pagination-bullet.circle:hover,
+.swiper-pagination-bullet.circle:focus,
+.swiper-pagination-bullet.circle.swiper-pagination-bullet-active {
+  /* Intentionally left empty */
+}
+
+/* Swiper Navigation Buttons - Square */
+.swiper-pagination-bullet.square {
+  border-radius: 0;
+}
+
+.swiper-pagination-bullet.square:hover,
+.swiper-pagination-bullet.square:focus,
+.swiper-pagination-bullet.square.swiper-pagination-bullet-active {
+  /* Intentionally left empty */
 }
 
 /*-------- Full Width---------*/
