@@ -1,5 +1,7 @@
-// Scripts.js - v1.30
+// Scripts.js - v1.31
 /*
+1.31
+- added initSwiperCarousel
 1.30
 - Fixed newly introduced error in initBlogDisclaimer
 1.29
@@ -557,8 +559,218 @@ function initSlideshow() {
         });
     }
 }
+/*
+initSwiperCarousel({
+  container: '.page-bg',
+  //hideDefault: true,
+  //dynamic: true,
+  //effect: 'fade | scroll | coverflow | flip | cube',
+  //style: 'pill | pill-h | line | circle | square',
+  //lazy: true,
+  items: [{
+    image: 'https://static.twentyoverten.com/5f0604fbcee8d70540f906b3/xur5pT6v0l/CoviddArticle.jpg',
+    html: '<h1  style="text-align:center">Clearing the air on COVID-19 misinformation</h1><h4   style="text-align:center">It’s also been comforting that so many questions that have been raised about COVID-19 have been met with educated answers...</h4> <p style="text-align:center"><br><a class="btn" aria-label="Read More about: Clearing the air on COVID-19 misinformation" href="#"> &nbsp; Read More &nbsp; </a></p>',
+    //x: 'left | center | right',
+    //y: 'top | center | bottom',
+    //alt: 'Alt text'
+  }, {
+    image: 'https://static.twentyoverten.com/5f0604fbcee8d70540f906b3/FC8QaFyzca/Becauseyouasked_image.jpg',
+    html: '<h1  style="text-align:center">Because you asked</h1><h4  style="text-align:center">Answering more of your top investment questions...</h4> <p style="text-align:center"><br><a class="btn" aria-label="Read More about: Because you asked…" href="#"> &nbsp; Read More &nbsp; </a></p>'
+  }, {
+    image: 'https://static.twentyoverten.com/5f0604fbcee8d70540f906b3/2rMx4TU1D0/hedgeabet.jpg',
+    html: '<h1 style="text-align:center">Hedging a bet on consumer optimism</h1><h4  style="text-align:center">How growth and expansion in 2021 is more than possible...</h4> <p style="text-align:center"><br><a class="btn" aria-label="Read More about: Hedging a bet on consumer optimism" href="https://advisorfocus-2943717.app.twentyoverten.com/top-stories/hedging-a-bet-on-consumer-optimism"> &nbsp; Read More &nbsp; </a></p>'
+  }],
+// settings: {
+// 	speed: 200,
+//   autoplay: {
+//   	delay: 1000
+//   }
+// }
+})
+*/
+function initSwiperCarousel(options) {
+
+  //Init Carousel options
+  let container = options.container || '.page-bg.full-screen'
+  let hideDefault = options.hideDefault || false
+  let items = options.items || []
+  let settings = options.settings || {}
+  let isLazyLoad = options.lazy ? {
+    loadPrevNext: true,
+  } : false
+
+  //Default carousel settings
+  let carouselSettings = {
+    lazy: isLazyLoad,
+    slidesPerView: 1,
+    loop: true,
+    grabCursor: true,
+    effect: options.effect || 'scroll',
+    speed: 750,
+    containerModifierClass: 'swiper-carousel swiper-container-',
+    resistance: false,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    keyboard: {
+      enabled: true
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      bulletClass: 'swiper-pagination-bullet ' + (options.style || 'pill'),
+      bulletElement: 'button',
+      dynamicBullets: options.dynamic || false,
+      clickable: true
+    },
+    a11y: {
+      enabled: true
+    }
+  }
+
+  //Return if container isn't found
+  if (!document.querySelector(container))
+    return console.log("Unable to find carousel container");
+
+  //Override default carousel settings with custom
+  for (let [key, value] of Object.entries(settings))
+    carouselSettings[key] = value
+
+  //Slider options
+  let $container = $(container)
+  let height = $container.height()
+  let isPupil = $container.find(".overlay-wrapper").length > 0,
+    isIntrinsic = $container.hasClass("is-intrinsic")
+  let isSingleTitle = items.some(function(i) {
+    return !(i.html || i.header)
+  })
+
+  let htmlContainer = ""
 
 
+  //For each item
+  items.forEach(function(item) {
+    let image = item.image || item.img
+    let html = item.html || item.header
+    let alt = item.alt
+    let x = item.x || "center",
+      y = item.y || "center"
+    let style = "background-position: " + x + " " + y + "; background-repeat: no-repeat; background-attachment: scroll; background-size: cover;"
+
+    htmlContainer += '<div class="swiper-slide">'
+
+    //If the background image was set to instrinsic
+    if (isIntrinsic) {
+
+      //If lazy Loading
+      if (isLazyLoad)
+        htmlContainer += '<figure class="page-bg--image"><img data-src="' + image + (alt ? 'alt="' + alt + '"' : '') + ' class="swiper-lazy"></figure>'
+      else
+        htmlContainer += '<figure class="page-bg--image"><img src="' + image + '" ' + (alt ? 'alt="' + alt + '"' : '') + '></figure>'
+
+    } else {
+
+      //If lazy Loading
+      if (isLazyLoad)
+        htmlContainer += '<div class="bg swiper-lazy" data-background="' + image + '" style="' + style + (!isLazyLoad ? ' background-image: url(\'' + image + '\')' : '') + ' "><div class="swiper-lazy-preloader"></div></div>'
+      else
+        htmlContainer += '<div class="bg " style="' + style + ' background-image: url(\'' + image + '\') ' + (alt ? 'alt="' + alt + '"' : '') + '"></div>'
+    }
+    //Add the overlay - clear the background if using a single title for all
+    htmlContainer += '<div class="overlay" ' + (isSingleTitle ? 'style="background:none"' : '') + '>'
+
+    if (!isSingleTitle) {
+
+      htmlContainer += '<div class="container">'
+
+      //If the framework isn't pupil push the hero content down 99px
+      if (!isPupil && $container.find(".header-push").length > 0)
+        htmlContainer += $container.find(".header-push")[0].outerHTML
+
+      // Add the hero content wrapper
+      htmlContainer += '<div class="hero-content" data-location="hero_content" data-type="hero">'
+
+      //Add the content if item has it's own text
+      if (html)
+        htmlContainer += html
+
+      // Close the wrapper
+      htmlContainer += "</div></div>"
+    }
+    // Close the wrapper
+    htmlContainer += "</div></div>"
+
+  })
+
+
+  //Move the container in another layer if on pupil
+  if (isPupil)
+    $container = $container.find(".overlay-wrapper")
+
+
+  //Hide the default item in the container is selected
+  if (hideDefault)
+    $container.html(htmlContainer)
+  else {
+    $container.wrapInner('<div class="swiper-slide"></div>')
+    $container.append(htmlContainer)
+  }
+
+  //Wrap the container, and move the container object to the wrapper
+  $container.wrapInner('<div class="swiper-container"><div class="swiper-wrapper">')
+  $container = $container.find(".swiper-container")
+  $container.append('<div class="swiper-pagination"></div>')
+
+  //Start carousel
+  let carousel = new Swiper($container[0], carouselSettings)
+
+
+  //Add a pause button
+  let pauseBtn = $('<button class="swiper-pause" title="Pause/Play carousel"><i class="fas fa-pause"></i></button>')
+  pauseBtn.on("click", function() {
+
+    //Unpause
+    if ($container.hasClass("paused")) {
+      $container.removeClass("paused")
+      carousel.autoplay.start()
+      this.innerHTML = '<i class="fas fa-pause"></i>'
+    }
+
+    //Pause
+    else {
+      $container.addClass("paused")
+      carousel.autoplay.stop()
+      this.innerHTML = '<i class="fas fa-play"></i>'
+    }
+  })
+
+  $container.append(pauseBtn)
+
+  //If using a single title for all overlays, hide the rest and show only the one on top
+  if (isSingleTitle) {
+
+    //Can't remove as the overlay div still needs to be there for sizing
+    let overlays = $container.find(".overlay")
+    let overlay = $(overlays[1]).clone()
+    overlays.css({
+      "background": "none"
+    })
+    overlays.html("")
+
+    //Adjust single overlay and put it on top
+    overlay.css({
+      position: 'absolute',
+      top: '0',
+      bottom: '0',
+      left: '0',
+      right: '0',
+      'z-index': '1'
+    })
+    $(".swiper-pagination").before(overlay)
+  }
+}
+
+// DEPRECATED
 function initCarousel(options, useSelector, selectorStyle, rotateText, items, globalStyle, alignY) {
 
     //Check if options is a string (Supports older websites)
