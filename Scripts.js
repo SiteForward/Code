@@ -1,7 +1,8 @@
 // Scripts.js - v1.31
 /*
 1.31
-- added initSwiperCarousel
+- Added initSwiperCarousel(options)
+- Added initSwiperSlideshow(options)
 1.30
 - Fixed newly introduced error in initBlogDisclaimer
 1.29
@@ -770,6 +771,90 @@ function initSwiperCarousel(options) {
   }
 }
 
+
+function initSwiperSlideshow(options) {
+
+  if (window.suppress)
+    return console.log("Website Suppressed - In Preview");
+
+  //Init Carousel options
+  let container = options.container || '.slideshow'
+  let settings = options.settings || {}
+
+  //Default slideshow settings
+  let slideshowSettings = {
+    slidesPerView: 1,
+    loop: true,
+    grabCursor: true,
+    effect: options.effect || 'scroll',
+    speed: 750,
+    containerModifierClass: 'swiper-slideshow swiper-container-',
+    resistance: false,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    keyboard: {
+      enabled: true
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      bulletClass: 'swiper-pagination-bullet ' + (options.style || 'pill'),
+      bulletElement: 'button',
+      dynamicBullets: options.dynamic || false,
+      clickable: true
+    },
+    a11y: {
+      enabled: true
+    }
+  }
+
+  //Return if container isn't found
+  if (!document.querySelector(container))
+    return console.log("Unable to find container");
+
+  //Override default carousel settings with custom
+  for (let [key, value] of Object.entries(settings))
+    slideshowSettings[key] = value
+
+  let $container = $(container);
+  let items = $container.children();
+  items.each(function(e, i) {
+    $(i).wrap('<div class="swiper-slide">')
+  })
+  $container.wrapInner('<div class="swiper-container"><div class="swiper-wrapper">')
+  $container = $container.find(".swiper-container")
+
+  //Add Pagination if not specified
+  if (!options.settings && !options.settings.pagination && !options.settings.pagination.el)
+    $container.append('<div class="swiper-pagination"></div>')
+
+  //Start carousel
+  let swiper = new Swiper($container[0], slideshowSettings)
+
+  if (slideshowSettings.autoplay) {
+    //Add a pause button
+    let pauseBtn = $('<button class="swiper-pause" title="Pause/Play carousel"><i class="fas fa-pause"></i></button>')
+    pauseBtn.on("click", function() {
+
+      //Unpause
+      if ($container.hasClass("paused")) {
+        $container.removeClass("paused")
+        swiper.autoplay.start()
+        this.innerHTML = '<i class="fas fa-pause"></i>'
+      }
+
+      //Pause
+      else {
+        $container.addClass("paused")
+        swiper.autoplay.stop()
+        this.innerHTML = '<i class="fas fa-play"></i>'
+      }
+    })
+    $container.append(pauseBtn)
+  }
+}
+
 // DEPRECATED
 function initCarousel(options, useSelector, selectorStyle, rotateText, items, globalStyle, alignY) {
 
@@ -962,7 +1047,6 @@ function initCarousel(options, useSelector, selectorStyle, rotateText, items, gl
     } else if (pupilFramework) {
         $(container).find(".overlay-wrapper").append(overlayCopyPlaceholder);
     }
-
 }
 
 function initVideo(container, videoURL) {
