@@ -1,5 +1,7 @@
-// Scripts.js - v1.31
+// Scripts.js - v1.32
 /*
+1.32
+- waitForLoad no longer uses JQuery
 1.31
 - Added initSwiperCarousel(options)
 - Added initSwiperSlideshow(options)
@@ -122,7 +124,7 @@ function waitForJQuery(callback) {
 
 function waitForLoad(callback) {
     var checkLoop = setInterval(function() {
-        if ($('html').hasClass("is-loaded")) {
+        if (document.querySelector('html').classList.contains("is-loaded")) {
             clearInterval(checkLoop);
             callback();
         }
