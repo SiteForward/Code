@@ -1,4 +1,7 @@
-/* Styles.css - v1.66
+/* Styles.css - v1.67
+1.67
+- added data-editableContainer wrappers for items
+- data-move_below no longer needs class
 1.66
 - Added Swiper Carousel CSS
 1.65
@@ -1275,7 +1278,8 @@ a.btn.arrow:hover::after{
   opacity: 1;
 }
 /* ----- Move Content Below----- */
-.editable .moveBelow{
+.editable .moveBelow,
+.editable div[data-below_area]{
   border: 1px solid;
   margin: 2rem 0;
   border-radius: 6px;
@@ -1283,12 +1287,45 @@ a.btn.arrow:hover::after{
   border-top-left-radius: 0;
   display: block;
 }
-.editable .moveBelow::after{
+.editable .moveBelow::after,
+.editable div[data-below_area]::after{
   content: "Moving Below: " attr(data-below_area);
   display: block;
   position: absolute;
   bottom: 100%;
   left: -1px;
+  background: white;
+  color: black;
+  font-size: 9px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/*  EditableContainer wrappers for items */
+.editable div[data-editableContainer] {
+  display: block;
+}
+
+.editable div[data-editableContainer]>div {
+  border: 1px solid;
+  margin: 2rem 0;
+  border-radius: 6px;
+  position: relative;
+  border-top-left-radius: 0;
+  display: block;
+  counter-increment: number;
+}
+
+.editable div[data-editableContainer]>div::before {
+  content: "Editable Container - Item "counter(number);
+  display: block;
+  position: absolute;
+  bottom: 100%;
+  left: 5px;
   background: white;
   color: black;
   font-size: 9px;
@@ -1368,17 +1405,7 @@ hr.line{
   Tabbed Icon Carousel - Services Section
 ------------------------------------------*/
 
-#section-custom-solutions .main-content-wrapper .container {
-  width: 100%;
-  max-width: none;
-}
-
-#section-custom-solutions .main-content-wrapper .heading-container {
-  margin: 0 auto;
-  width: 90%;
-}
-
-.services-carousel.owl-carousel {
+.owl-theme.services-carousel {
   /*background: #00273d; */ /* EDIT LOCALLY */
   margin-bottom: 2rem;
 }
@@ -1530,16 +1557,16 @@ hr.line{
     max-width: 1200px;
   }
 
-  .services-carousel.owl-carousel {
+  .services-carousel {
     margin-bottom: 4rem;
   }
 
-  .owl-carousel.owl-theme.services-carousel .owl-item .item {
+  .owl-theme.services-carousel .owl-item .item {
     max-width: 1310px;
     padding: 0 2em;
   }
 
-  .services-carousel .item h3 {
+  .owl-theme.services-carousel .item h3 {
     margin-top: 0px;
   }
 
