@@ -1,4 +1,6 @@
-/* Styles.css - v1.67
+/* Styles.css - v1.67.1
+1.67.1
+- Reverted Tabbed carousel
 1.67
 - added data-editableContainer wrappers for items
 - data-move_below no longer needs class
@@ -1405,7 +1407,17 @@ hr.line{
   Tabbed Icon Carousel - Services Section
 ------------------------------------------*/
 
-.owl-theme.services-carousel {
+#section-custom-solutions .main-content-wrapper .container {
+  width: 100%;
+  max-width: none;
+}
+
+#section-custom-solutions .main-content-wrapper .heading-container {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.services-carousel.owl-carousel {
   /*background: #00273d; */ /* EDIT LOCALLY */
   margin-bottom: 2rem;
 }
@@ -1557,16 +1569,16 @@ hr.line{
     max-width: 1200px;
   }
 
-  .services-carousel {
+  .services-carousel.owl-carousel {
     margin-bottom: 4rem;
   }
 
-  .owl-theme.services-carousel .owl-item .item {
+  .owl-carousel.owl-theme.services-carousel .owl-item .item {
     max-width: 1310px;
     padding: 0 2em;
   }
 
-  .owl-theme.services-carousel .item h3 {
+  .services-carousel .item h3 {
     margin-top: 0px;
   }
 
