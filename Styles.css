@@ -1,4 +1,6 @@
-/* Styles.css - v1.67.1
+/* Styles.css - v1.68
+1.68
+- Added Swiper Services Slideshow CSS
 1.67.1
 - Reverted Tabbed carousel
 1.67
@@ -1727,6 +1729,64 @@ hr.line{
   .icon-container img {
       margin: 0 auto 30px !important;
   }
+}
+
+/* --- Swiper Services Slideshow --- */
+.services-slideshow {
+  background: #2b2b2b;
+  color: #ffffff;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.services-slideshow-nav {
+  display: flex;
+}
+
+.services-slideshow-nav .swiper-pagination-bullet-services {
+  position: relative;
+}
+
+.services-slideshow-nav .swiper-pagination-bullet-services::after {
+  position: absolute;
+  content: '';
+  bottom: -15px;
+  left: calc(50% - 5px);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 0 solid #2b2b2b;
+  transition: 0.25s all;
+}
+
+.services-slideshow-nav .swiper-pagination-bullet-services.active::after {
+  position: absolute;
+  content: '';
+  border-bottom-width: 10px;
+}
+
+.services-slideshow-nav .services-slideshow-nav-item .services-slideshow-nav-item-title {
+  display: none;
+}
+
+@media (min-width: 820px) {
+  .services-slideshow-nav .services-slideshow-nav-item .services-slideshow-nav-item-title {
+    display: block;
+    transition: 0.25s color;
+  }
+}
+
+.services-slideshow-nav .services-slideshow-nav-item .services-slideshow-nav-item-icon {
+  width: 100%;
+  height: 100%;
+  max-height: 45px;
+  pointer-events: none;
+  transition: 0.25s fill;
+}
+
+.services-slideshow-nav .services-slideshow-nav-item.active .services-slideshow-nav-item-title,
+.services-slideshow-nav .services-slideshow-nav-item.active .services-slideshow-nav-item-icon {
+  fill: #00A758;
+  color: #00A758;
 }
 
 /*------------------------------
