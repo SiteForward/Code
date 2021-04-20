@@ -1,4 +1,6 @@
-/* Styles.css - v1.68
+/* Styles.css - v1.68.1
+1.68.1
+- Slideshow alternateBoxes text width 500px -> 700px
 1.68
 - Added Swiper Services Slideshow CSS
 1.67.1
@@ -1737,6 +1739,10 @@ hr.line{
   color: #ffffff;
   margin-bottom: 15px;
   margin-top: 15px;
+}
+
+.services-slideshow div.alternateBoxes > div.row:nth-child(odd) > div:first-of-type + div {
+  max-width: 700px
 }
 
 .services-slideshow-nav {
