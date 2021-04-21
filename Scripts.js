@@ -1,5 +1,7 @@
-// Scripts.js - v1.32
+// Scripts.js - v1.32.1
 /*
+1.32.1
+- Fixes issue with Pagination not being defined in Swiper Slideshow
 1.32
 - waitForLoad no longer uses JQuery
 1.31
@@ -828,7 +830,7 @@ function initSwiperSlideshow(options) {
   $container = $container.find(".swiper-container")
 
   //Add Pagination if not specified
-  if (!options.settings && !options.settings.pagination && !options.settings.pagination.el)
+  if (!(options.settings && options.settings.pagination && options.settings.pagination.el))
     $container.append('<div class="swiper-pagination"></div>')
 
   //Start carousel
