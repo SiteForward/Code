@@ -1,4 +1,6 @@
-/* Styles.css - v1.68.1
+/* Styles.css - v1.68.2
+1.68.2
+- services-slideshow-nav spaces button in flex grid evenly
 1.68.1
 - Slideshow alternateBoxes text width 500px -> 700px
 1.68
@@ -1747,6 +1749,7 @@ hr.line{
 
 .services-slideshow-nav {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .services-slideshow-nav .swiper-pagination-bullet-services {
