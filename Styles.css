@@ -1,4 +1,6 @@
-/* Styles.css - v1.68.2
+/* Styles.css - v1.69
+1.69
+- Added Radio & Checkbox group formatting
 1.68.2
 - services-slideshow-nav spaces button in flex grid evenly
 1.68.1
@@ -1892,4 +1894,36 @@ body .financial-calculators a h4 {
 
 body .financial-calculators .card-row > div {
   padding: 1.25rem 1rem 1rem;
+}
+
+/* Radio/Checkbox button group */
+.radio-group,
+.checkbox-group{
+  display: flex;
+}
+
+.radio-group label,
+.checkbox-group label{
+  font-family: 'Lato';
+  text-transform: none;
+  font-size: .9em;
+}
+
+.radio-group input,
+.checkbox-group input{
+  width: auto !important;
+}
+.radio-group input{
+  margin-right: 5px;
+  top: 1px;
+}
+.checkbox-group label{
+  margin-left: 10px;
+}
+.checkbox-group:not(:last-of-type){
+  margin-bottom: 7px;
+}
+
+.radio-group label:not(:last-of-type){
+   margin-right: 25px;
 }
