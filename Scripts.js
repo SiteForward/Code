@@ -315,7 +315,7 @@ function adjustAlternateBackgrounds(){
           $(e).hide();
           var src = e.src;
           let div = e.parentNode;
-          while(div.tagName != "div")
+          while(div.tagName != "DIV")
             div = div.parentNode;
           div.style = "background: url(" + src + "); background-size: cover; background-position: center center; min-height: 400px;";
           div.ariaLabel = e.alt + " Image";
