@@ -1,5 +1,7 @@
-// Scripts.js - v1.32.1
+// Scripts.js - v1.33
 /*
+1.33
+- Added adjustAlternateBackgrounds
 1.32.1
 - Fixes issue with Pagination not being defined in Swiper Slideshow
 1.32
@@ -305,12 +307,20 @@ function initMembersOverlayURL() {
 }
 
 function updateAlternateBoxes() {
-    if (!window.suppress)
-        $(".alternateBoxes img").each(function(i, e) {
-            $(e).hide();
-            var src = e.src;
-            $(e).parent().parent()[0].style = "background: url(" + src + "); background-size: cover; background-position: center center; min-height: 300px;";
-        });
+  adjustAlternateBackgrounds();
+}
+function adjustAlternateBackgrounds(){
+  if (!window.suppress)
+      $(".alternateBoxes.alternateBackgrounds img").each(function(i, e) {
+          $(e).hide();
+          var src = e.src;
+          let div = e.parentNode;
+          while(div.tagName != "div")
+            div = div.parentNode;
+          div.style = "background: url(" + src + "); background-size: cover; background-position: center center; min-height: 400px;";
+          div.ariaLabel = e.alt + " Image";
+          div.classList.add("alternateBoxes-background");
+      });
 }
 
 function initIrisScrollAdjust() {
