@@ -1,5 +1,7 @@
-// Scripts.js - v1.33
+// Scripts.js - v1.34
 /*
+1.34
+- initFrenchBlog() now only translates blog pages
 1.33
 - Added adjustAlternateBackgrounds
 1.32.1
@@ -1193,14 +1195,14 @@ function adjustMembersOverlayWidth() {
 }
 
 function initFrenchBlog() {
-    $('.form-item button[type="submit"]').html("Chercher");
-    $(".categories-title").html("catégories");
-    $(".read-more").html("<span></span>Lire Davantage");
-    $('.form-item input[name="q"]').attr("placeholder", "Entrez votre recherche...");
-    $(".prev-page").text("Page Précédente");
-    $(".next-page").text("Page Suivante");
+    $('.blog-page .content-wrapper .search-form .form-item button[type="submit"]').html("Chercher");
+    $(".blog-page .content-wrapper .categories-title").html("catégories");
+    $(".blog-page .content-wrapper .read-more").html("<span></span>Lire Davantage");
+    $('.blog-page .content-wrapper .form-item input[name="q"]').attr("placeholder", "Entrez votre recherche...");
+    $(".blog-page .content-wrapper .prev-page").text("Page Précédente");
+    $(".blog-page .content-wrapper .next-page").text("Page Suivante");
 
-    $(".post-meta time").each(function() {
+    $(".blog-page .content-wrapper .post-meta time").each(function() {
         var time = $(this).html()
             .replace(/January/g, "Janvier")
             .replace(/Febuary/g, "Février")
