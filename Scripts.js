@@ -1,5 +1,7 @@
-// Scripts.js - v1.34
+// Scripts.js - v1.34.1
 /*
+1.34.1
+- initSwiperCarousel will now move .scroll-down on top of the carousel
 1.34
 - initFrenchBlog() now only translates blog pages
 1.33
@@ -784,6 +786,7 @@ function initSwiperCarousel(options) {
       'z-index': '1'
     })
     $(".swiper-pagination").before(overlay)
+    $(".swiper-pagination").before($('.scroll-down'))
   }
 }
 
