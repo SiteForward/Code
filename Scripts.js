@@ -1,5 +1,7 @@
-// Scripts.js - v1.34.1
+// Scripts.js - v1.35
 /*
+1.35
+- initMembersOverlayURL() will now work on Iris Framework as well
 1.34.1
 - initSwiperCarousel will now move .scroll-down on top of the carousel
 1.34
@@ -301,7 +303,7 @@ function initMembersOverlayURL() {
 
         if (advisor) {
             advisor = advisor.replace(/-/g, " ").replace(/_/g, " ").replace(/%20/g, " ");
-            var overlay = $("#members-list").find('.member-header:contains(' + advisor + ')').parent();
+            var overlay = $("#members-list, .members-list").find('.member-header:contains(' + advisor + ')').parent();
 
             setTimeout(function() {
                 overlay.click();
