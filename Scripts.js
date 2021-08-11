@@ -1,5 +1,7 @@
-// Scripts.js - v1.36
+// Scripts.js - v1.36.1
 /*
+1.36.1
+- Re-add scroll-down click event to initSwiperCarousel
 1.36
 - initSwiperCarousel will wait before creating - allows titles to stay showing
 1.35
@@ -792,8 +794,18 @@ function initSwiperCarousel(options) {
       })
       $(".swiper-pagination").before(overlay)
       $(".swiper-pagination").before($('.scroll-down'))
+      $(".scroll-down").off().on("click", function (e) {
+        e.preventDefault();
+        var offset = $("#page-wrapper.has-fixed-header").length ? -$("#header").height() : 0;
+        $(".content-wrapper").velocity("scroll", {
+          offset: offset,
+          duration: 800,
+          easing: "easeInOutCubic"
+        });
+      });
+  
     }
-  },1)
+  }, 1)
 }
 
 
