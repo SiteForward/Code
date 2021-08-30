@@ -1,5 +1,8 @@
-// Scripts.js - v1.36.1
+// Scripts.js - v1.37
 /*
+1.37
+- initSwiperCarousel will now add chevron's to all slides if the one on the home is present
+- Supports Swiper v7
 1.36.1
 - Re-add scroll-down click event to initSwiperCarousel
 1.36
@@ -614,7 +617,7 @@ initSwiperCarousel({
 })
 */
 function initSwiperCarousel(options) {
-  setTimeout(function(){
+  setTimeout(function() {
 
     //Init Carousel options
     let container = options.container || '.page-bg.full-screen'
@@ -633,7 +636,7 @@ function initSwiperCarousel(options) {
       grabCursor: true,
       effect: options.effect || 'scroll',
       speed: 750,
-      containerModifierClass: 'swiper-carousel swiper-container-',
+      containerModifierClass: 'swiper-carousel swiper-',
       resistance: false,
       autoplay: {
         delay: 5000,
@@ -743,13 +746,12 @@ function initSwiperCarousel(options) {
     }
 
     //Wrap the container, and move the container object to the wrapper
-    $container.wrapInner('<div class="swiper-container"><div class="swiper-wrapper">')
-    $container = $container.find(".swiper-container")
+    $container.wrapInner('<div class="swiper"><div class="swiper-wrapper">')
+    $container = $container.find(".swiper")
     $container.append('<div class="swiper-pagination"></div>')
 
     //Start carousel
     let carousel = new Swiper($container[0], carouselSettings)
-
 
     //Add a pause button
     let pauseBtn = $('<button class="swiper-pause" title="Pause/Play carousel"><i class="fas fa-pause"></i></button>')
@@ -792,9 +794,9 @@ function initSwiperCarousel(options) {
         right: '0',
         'z-index': '1'
       })
-      $(".swiper-pagination").before(overlay)
-      $(".swiper-pagination").before($('.scroll-down'))
-      $(".scroll-down").off().on("click", function (e) {
+      $container.find(".swiper-pagination").before(overlay)
+      $container.find(".swiper-pagination").before($('.scroll-down'))
+      $container.find(".scroll-down").off().on("click", function(e) {
         e.preventDefault();
         var offset = $("#page-wrapper.has-fixed-header").length ? -$("#header").height() : 0;
         $(".content-wrapper").velocity("scroll", {
@@ -803,7 +805,22 @@ function initSwiperCarousel(options) {
           easing: "easeInOutCubic"
         });
       });
-  
+    } else {
+      if ($container.find(".scroll-down").length > 0) {
+        $container.find(".overlay").each((i,e) => {
+          if ($(e).parent().find(".scroll-down").length == 0)
+            $(e).parent().append('<div class="scroll-down"><span></span></div>');
+        })
+        $(".scroll-down").off().on("click", function(e) {
+          e.preventDefault();
+          var offset = $("#page-wrapper.has-fixed-header").length ? -$("#header").height() : 0;
+          $(".content-wrapper").velocity("scroll", {
+            offset: offset,
+            duration: 800,
+            easing: "easeInOutCubic"
+          });
+        });
+      }
     }
   }, 1)
 }
