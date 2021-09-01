@@ -1,5 +1,7 @@
-// Scripts.js - v1.37
+// Scripts.js - v1.37.1
 /*
+1.37.1
+- initSwiperSlideshow has been updated to support Swiper v7 as well
 1.37
 - initSwiperCarousel will now add chevron's to all slides if the one on the home is present
 - Supports Swiper v7
@@ -842,7 +844,7 @@ function initSwiperSlideshow(options) {
     grabCursor: true,
     effect: options.effect || 'scroll',
     speed: 750,
-    containerModifierClass: 'swiper-slideshow swiper-container-',
+    containerModifierClass: 'swiper-slideshow swiper-',
     resistance: false,
     autoplay: {
       delay: 5000,
@@ -876,8 +878,8 @@ function initSwiperSlideshow(options) {
   items.each(function(e, i) {
     $(i).wrap('<div class="swiper-slide">')
   })
-  $container.wrapInner('<div class="swiper-container"><div class="swiper-wrapper">')
-  $container = $container.find(".swiper-container")
+  $container.wrapInner('<div class="swiper"><div class="swiper-wrapper">')
+  $container = $container.find(".swiper")
 
   //Add Pagination if not specified
   if (!(options.settings && options.settings.pagination && options.settings.pagination.el))
