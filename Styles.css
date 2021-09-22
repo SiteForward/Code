@@ -1,4 +1,6 @@
 /* Styles.css - v1.69
+1.7
+- Added .smaller-last to form splits
 1.69
 - Added Radio & Checkbox group formatting
 1.68.2
@@ -574,7 +576,10 @@ a.card:hover::after{
   }
 }
 .form-item.split div {
-    flex: 1;
+  flex: 1;
+}
+.form-item.split.last-smaller div:not(:last-of-type) {
+  flex: 2;
 }
 @media(min-width: 820px){
   .form-item.split div:not(:first-of-type) {
