@@ -1,4 +1,6 @@
-/* Styles.css - v1.69
+/* Styles.css - v1.7.1
+1.7.1
+- Added additional HR Styles
 1.7
 - Added .smaller-last to form splits
 1.69
@@ -1353,10 +1355,48 @@ a.btn.arrow:hover::after{
 }
 
 /* ----- HR Line ----- */
+/* Old HR Styles */
 hr.line{
   width: 90%;
   border-width: 1px;
   border-color: #00A758;
+}
+hr.short{
+  width: 30%;
+}
+/* New HR Styles */
+hr.line-90{
+  width: 90%;
+}
+hr.line-70{
+  width: 70%;
+}
+hr.line-50{
+  width: 50%;
+}
+hr.line-30{
+  width: 30%;
+}
+hr.line-10{
+  width: 10%;
+}
+hr.left{
+  margin: 20px 0;
+}
+hr.right{
+  margin-right: 0;
+}
+hr.thin{
+  border-width: 1px;
+}
+hr.white{
+  border-color: #fff;
+}
+hr.black{
+  border-color: #111;
+}
+hr.green{
+  border-color: #06a65c;
 }
 /* ----- Overlay Not Fullscreen ----- */
  .overlay-content.smaller{
