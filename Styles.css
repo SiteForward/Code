@@ -1,7 +1,10 @@
-/* Styles.css - v1.7.1
-1.7.1
+/* Styles.css - v1.71
+1.71
+- Swiper carousel move scroll-down chevron up
+- Cleaned version numbers in changelog
+1.70.1
 - Added additional HR Styles
-1.7
+1.70
 - Added .smaller-last to form splits
 1.69
 - Added Radio & Checkbox group formatting
@@ -29,12 +32,12 @@
 - dealer-logos no longer sets margins if flush-top(1.3.8 fix didn't work on IRIS Frameworks)
 1.61
 - #section-services and financial calcualtors will only apply if within the body tag
-1.6
+1.60
 - re-add Edit styles for .financial-calculators section on Resources page
 - re-added .text-left-desktop for Manulife logo img in footers
-1.5
+1.50
 - re-add CSS for MFDA dealer logo .in-footer
-1.4
+1.40
 - Added CSS for Services Carousel with AutoHeight
 1.39
 - Added flush-top to footer with -3
@@ -1087,6 +1090,10 @@ ul.icons > li > a:not(:hover){
 
 .swiper-carousel .swiper-slide {
   height: auto;
+}
+/* Swiper move scroll-down chevron up */
+.swiper-carousel .scroll-down{
+  bottom: 40px;
 }
 
 /* Swiper Pause button */
