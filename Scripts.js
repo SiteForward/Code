@@ -1,5 +1,7 @@
-// Scripts.js - v1.37.1
+// Scripts.js - v1.37.2
 /*
+1.37.2
+- initSwiperCarousel - moved hideDefault to after the carousle is made to fix overlay not showing
 1.37.1
 - initSwiperSlideshow has been updated to support Swiper v7 as well
 1.37
@@ -738,14 +740,9 @@ function initSwiperCarousel(options) {
     if (isPupil)
       $container = $container.find(".overlay-wrapper")
 
-
-    //Hide the default item in the container is selected
-    if (hideDefault)
-      $container.html(htmlContainer)
-    else {
-      $container.wrapInner('<div class="swiper-slide"></div>')
-      $container.append(htmlContainer)
-    }
+    $container.wrapInner('<div class="swiper-slide"></div>')
+    $container.append(htmlContainer)
+   
 
     //Wrap the container, and move the container object to the wrapper
     $container.wrapInner('<div class="swiper"><div class="swiper-wrapper">')
@@ -798,6 +795,8 @@ function initSwiperCarousel(options) {
       })
       $container.find(".swiper-pagination").before(overlay)
       $container.find(".swiper-pagination").before($('.scroll-down'))
+      
+      //remove and re-add click events to make scroll work
       $container.find(".scroll-down").off().on("click", function(e) {
         e.preventDefault();
         var offset = $("#page-wrapper.has-fixed-header").length ? -$("#header").height() : 0;
@@ -807,7 +806,8 @@ function initSwiperCarousel(options) {
           easing: "easeInOutCubic"
         });
       });
-    } else {
+    } 
+    else {
       if ($container.find(".scroll-down").length > 0) {
         $container.find(".overlay").each((i,e) => {
           if ($(e).parent().find(".scroll-down").length == 0)
@@ -824,6 +824,8 @@ function initSwiperCarousel(options) {
         });
       }
     }
+    if(hideDefault)
+    	carousel.removeSlide(0)
   }, 1)
 }
 
