@@ -1,4 +1,6 @@
-/* Styles.css - v1.71
+/* Styles.css - v1.72
+1.72
+- Removed margin control on last p tag of a flush-top or flush-bottom callout
 1.71
 - Swiper carousel move scroll-down chevron up
 - Cleaned version numbers in changelog
@@ -307,10 +309,6 @@ hr {
  }
 }
 
-.flush-bottom p:last-child,
-.flush-top p:last-child{
- margin-bottom: 0;
-}
 /* ----- Callout Image----- */
 .callout-image:before {
 	width: 100vw;
