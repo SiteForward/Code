@@ -1,5 +1,8 @@
-// Scripts.js - v1.37.2
+// Scripts.js - v1.38
 /*
+1.38
+- initMoveBelow() no longer requires moveBelow class
+- Added initParallax(affactHeroImages:bool)
 1.37.2
 - initSwiperCarousel - moved hideDefault to after the carousle is made to fix overlay not showing
 1.37.1
@@ -1208,7 +1211,7 @@ function initVideo(container, videoURL) {
 }
 
 function initMoveBelow() {
-    $(".moveBelow").each(function() {
+    $(".moveBelow, [data-below_area]").each(function() {
         var $this = $(this);
         var belowArea = $($this.data("below_area"));
         if (belowArea.length > 0 &&
@@ -1226,7 +1229,34 @@ function initMoveBelow() {
         }
     });
 }
-
+function initParallax(hero){
+  if(!window.suppress){
+    hero = hero ?? false
+    
+    window.addEventListener('scroll', () => {
+      window.requestAnimationFrame(()=>{
+    	  let yWindow = window.scrollY
+        let images = [...document.querySelectorAll(".callout-image.parallax")]
+        if(hero)
+          images = [...images, ...document.querySelectorAll('.page-bg .bg, .divider .bg, .callout-quote .bg')]
+    	  images.forEach(e => {
+    	    let yPos = e.offsetTop
+    	    let yDif = yWindow - yPos
+    	    let yOffset = -(yDif * 0.4)
+    	    
+    	    if(e.classList.contains("callout-image"))
+    	      e.style.setProperty('--y', yOffset+"px")
+    	    
+    	   else{
+    	    let yOffset = Math.round(((yDif/window.innerHeight)*100)*0.8)
+    	       let alignment = e.style.getPropertyValue("background-position").split(" ")
+             e.style.setProperty('background-position', alignment[0]+' '+alignment[1]+' '+yOffset+"%")
+    	   }
+        })
+      })
+    })
+  }
+}
 
 function adjustMembersListWidth() {
     $("#members-list, .members-list").addClass("smaller");

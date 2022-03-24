@@ -1,4 +1,7 @@
-/* Styles.css - v1.72
+/* Styles.css - v1.73
+1.73
+- Made adjustments to .form-item.split
+- Updated .callout-image
 1.72
 - Removed margin control on last p tag of a flush-top or flush-bottom callout
 1.71
@@ -123,10 +126,13 @@
 body{
   overflow-x: hidden;
 }
-/* Left align client login text */
-.blog-page.client-login .post-link{
-   text-align: left;
- }
+
+/* Fix for single team member callout not putting space between text and side of screen */
+ @media(max-width: 820px){
+  .full > .row .col-xs-12{
+    padding: 0 2rem;
+  }
+}
 
 /* ----- Base----- */
 hr {
@@ -310,7 +316,17 @@ hr {
 }
 
 /* ----- Callout Image----- */
-.callout-image:before {
+.callout.callout-image{
+  min-height: 300px;
+}
+.callout.callout-image.center{
+  display: flex;
+  align-items: center;
+}
+.callout.callout-image.center > div:not(.callout-overlay){
+  width: 100%;
+}
+.callout-image::before {
 	width: 100vw;
 	left: 50%;
 	margin-left: -50vw;
@@ -323,8 +339,7 @@ hr {
 }
 
 .callout-image .callout-overlay {
-	background-color: #000000;
-	opacity: .5;
+	background-color: rgba(0 0 0 / 0.5);
 	position: absolute;
 	top: 0;
 	left: 50%;
@@ -335,11 +350,17 @@ hr {
 	height: 100%;
 	z-index: 3;
 }
-.callout-image *:not(.callout-overlay){
+.callout-image > *:not(.callout-overlay){
   z-index: 4;
   position: relative;
 }
-/* ---- Card ---- */
+
+.callout.callout-image.parallax::before{
+  background-position-y: var(--y);
+  background-attachment: fixed;
+  background-size: cover;
+}
+/* ---- Card ---- NO LONGER USED */
 .card {
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 	margin-bottom: 1rem;
@@ -570,27 +591,31 @@ a.card:hover::after{
 
 /* ----- Same line split form items ----- */
 .form-item.split {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
 }
-@media(max-width: 820px){
-  .form-item.split {
-    flex-flow: column wrap;
-  }
-}
-.form-item.split div {
+.form-item.split > div {
   flex: 1;
+  margin: 0 0 10px 0;
 }
-.form-item.split.last-smaller div:not(:last-of-type) {
+.form-item.split.last-smaller > div:not(:last-of-type) {
   flex: 2;
-}
-@media(min-width: 820px){
-  .form-item.split div:not(:first-of-type) {
-      margin: 0 5px;
-  }
 }
 .form-item.split label {
     display: block;
+}
+
+@media (min-width: 820px) {
+  .form-item.split {
+    flex-flow: row nowrap;
+  }
+  .form-item.split > div {
+    margin: 0 5px 0px 0;
+  }
+  .form-item.split > div:first-of-type{
+    margin: 0 5px;
+  }
 }
 /* ----- Animated Border----- */
 .draw-border {
@@ -681,6 +706,7 @@ a.card:hover::after{
   width: 100%;
   height: 100%;
 }
+
 /* ----- Alternating Boxes ----- */
 div.alternateBoxes > div.row{
      margin: 0;
