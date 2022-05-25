@@ -1,5 +1,9 @@
-// Scripts.js - v1.38
+// Scripts.js - v1.39
 /*
+1.39
+- Corrected issue with blog disclaimers not being translated on french pages
+1.38.1
+- Fixed bug with initParallax not affecting hero images
 1.38
 - initMoveBelow() no longer requires moveBelow class
 - Added initParallax(affactHeroImages:bool)
@@ -263,7 +267,7 @@ function initBlogDisclaimer(notPages) {
     });
   }
 
-  var disclaimer = 'The Advisor and Manulife Securities Incorporated, Manulife Securities Investment Services Inc. (“Manulife Securities”) and/or Manulife Securities Insurance Inc. do not make any representation that the information in any linked site is accurate and will not accept any responsibility or liability for any inaccuracies in the information not maintained by them, such as linked sites. Any opinion or advice expressed in a linked site should not be construed as the opinion or advice of the advisor or Manulife Securities. The information in this communication is subject to change without notice.' +
+  var disclaimer = '* This article link will open in a new internet browser tab.<br> The Advisor and Manulife Securities Incorporated, Manulife Securities Investment Services Inc. (“Manulife Securities”) and/or Manulife Securities Insurance Inc. do not make any representation that the information in any linked site is accurate and will not accept any responsibility or liability for any inaccuracies in the information not maintained by them, such as linked sites. Any opinion or advice expressed in a linked site should not be construed as the opinion or advice of the advisor or Manulife Securities. The information in this communication is subject to change without notice.' +
   '<br><br>This publication contains opinions of the writer and may not reflect opinions of the Advisor and Manulife Securities Incorporated, Manulife Securities Investment Services Inc. (“Manulife Securities”) and/or Manulife Securities Insurance Inc. The information contained herein was obtained from sources believed to be reliable, no representation, or warranty, express or implied, is made by the writer, Manulife Securities or any other person as to its accuracy, completeness or correctness. This publication is not an offer to sell or a solicitation of an offer to buy any of the securities. The securities discussed in this publication may not be eligible for sale in some jurisdictions. If you are not a Canadian resident, this report should not have been delivered to you. This publication is not meant to provide legal or account advice. As each situation is different you should consult your own professional Advisors for advice based on your specific circumstances.';
 
 var putOnPage = true;
@@ -282,8 +286,8 @@ if(notPages != null)
                 item.find(".post-header").find("h3").append('<sup style="font-size:.9rem"> *</sup>');
             }
         });
-        $(".blog-page" + notOnPage + " #page, .blog-page" + notOnPage + " .content-wrapper").append('<div class="container"><div class="main-content" id="footNote" ><p style="text-align:center" class="disclaimer">' + '* This article link will open in a new internet browser tab.<br>' + disclaimer + '</p></div></div>');
-        $(".post .post-wrapper").append('<div><hr><p style="text-align:center" class="disclaimer">' + disclaimer + '</p></div>');
+        $(".blog-page" + notOnPage + " #page, .blog-page" + notOnPage + " .content-wrapper").append('<div class="container"><div class="main-content" id="footNote" ><p style="text-align:center" class="disclaimer">' +  disclaimer + '</p></div></div>');
+        $(".post .post-wrapper").append('<div id="footNote"><hr><p style="text-align:center" class="disclaimer">' + disclaimer + '</p></div>');
     }
 }
 
@@ -1250,7 +1254,7 @@ function initParallax(hero){
     	   else{
     	    let yOffset = Math.round(((yDif/window.innerHeight)*100)*0.8)
     	       let alignment = e.style.getPropertyValue("background-position").split(" ")
-             e.style.setProperty('background-position', alignment[0]+' '+alignment[1]+' '+yOffset+"%")
+             e.style.setProperty('background-position', alignment[0]+' '+alignment[1]+' '+yOffset+"px")
     	   }
         })
       })
