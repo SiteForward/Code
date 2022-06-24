@@ -1,4 +1,7 @@
-/* Styles.css - v1.73
+/* Styles.css - v1.74
+1.74
+- added style for p tag containing multiple buttons
+- Fixed .form-item.split
 1.73
 - Made adjustments to .form-item.split
 - Updated .callout-image
@@ -611,10 +614,13 @@ a.card:hover::after{
     flex-flow: row nowrap;
   }
   .form-item.split > div {
-    margin: 0 5px 0px 0;
+    margin: 0 2px;
   }
   .form-item.split > div:first-of-type{
-    margin: 0 5px;
+    margin: 0 2px 0 0;
+  }
+  .form-item.split > div:last-of-type{
+    margin: 0 0 0 2px;
   }
 }
 /* ----- Animated Border----- */
@@ -2002,4 +2008,13 @@ body .financial-calculators .card-row > div {
 
 .radio-group label:not(:last-of-type){
    margin-right: 25px;
+}
+
+/* for multiple buttons contained within a p tag */
+p.multiple-buttons .btn {
+  margin: 0 5px 10px;
+}
+
+p.multiple-buttons .btn:last-child {
+  margin: 0 5px 0px;
 }
