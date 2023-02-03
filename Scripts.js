@@ -1,5 +1,8 @@
-// Scripts.js - v1.39
+// Scripts.js - v1.40
 /*
+1.40
+- Updated to Swiper 9
+- Fixed multiple headers in carousel
 1.39
 - Corrected issue with blog disclaimers not being translated on french pages
 1.38.1
@@ -645,9 +648,9 @@ function initSwiperCarousel(options) {
       slidesPerView: 1,
       loop: true,
       grabCursor: true,
+      containerModifierClass: 'swiper-container-',
       effect: options.effect || 'scroll',
       speed: 750,
-      containerModifierClass: 'swiper-carousel swiper-',
       resistance: false,
       autoplay: {
         delay: 5000,
@@ -681,8 +684,8 @@ function initSwiperCarousel(options) {
     let height = $container.height()
     let isPupil = $container.find(".overlay-wrapper").length > 0,
       isIntrinsic = $container.hasClass("is-intrinsic")
-    let isSingleTitle = items.some(function(i) {
-      return !(i.html || i.header)
+    let isSingleTitle = !items.some(function(i) {
+      return (i.html || i.header)
     })
 
     let htmlContainer = ""
@@ -752,7 +755,7 @@ function initSwiperCarousel(options) {
    
 
     //Wrap the container, and move the container object to the wrapper
-    $container.wrapInner('<div class="swiper"><div class="swiper-wrapper">')
+    $container.wrapInner('<div class="swiper swiper-carousel swiper-container"><div class="swiper-wrapper">')
     $container = $container.find(".swiper")
     $container.append('<div class="swiper-pagination"></div>')
 
@@ -785,10 +788,8 @@ function initSwiperCarousel(options) {
 
       //Can't remove as the overlay div still needs to be there for sizing
       let overlays = $container.find(".overlay")
-      let overlay = $(overlays[1]).clone()
-      overlays.css({
-        "background": "none"
-      })
+      let overlay = $(overlays[0]).clone()
+      
       overlays.html("")
 
       //Adjust single overlay and put it on top
@@ -831,6 +832,7 @@ function initSwiperCarousel(options) {
         });
       }
     }
+      
     if(hideDefault)
     	carousel.removeSlide(0)
   }, 1)
