@@ -1,5 +1,7 @@
-// Scripts.js - v1.40
+// Scripts.js - v1.41
 /*
+1.41
+- Fixed alt tags in Swiper Carousel
 1.40
 - Updated to Swiper 9
 - Fixed multiple headers in carousel
@@ -704,20 +706,10 @@ function initSwiperCarousel(options) {
 
       //If the background image was set to instrinsic
       if (isIntrinsic) {
-
-        //If lazy Loading
-        if (isLazyLoad)
-          htmlContainer += '<figure class="page-bg--image"><img data-src="' + image + (alt ? 'alt="' + alt + '"' : '') + ' class="swiper-lazy"></figure>'
-        else
-          htmlContainer += '<figure class="page-bg--image"><img src="' + image + '" ' + (alt ? 'alt="' + alt + '"' : '') + '></figure>'
-
+        htmlContainer += '<figure class="page-bg--image"><img src="' + image +'"'+ (alt ? 'alt="' + alt + '"' : '') + (isLazyLoad ? ' loading="lazy"' : '')+'><div class="swiper-lazy-preloader"></div></figure>'
+       
       } else {
-
-        //If lazy Loading
-        if (isLazyLoad)
-          htmlContainer += '<div class="bg swiper-lazy" data-background="' + image + '" style="' + style + (!isLazyLoad ? ' background-image: url(\'' + image + '\')' : '') + ' "><div class="swiper-lazy-preloader"></div></div>'
-        else
-          htmlContainer += '<div class="bg " style="' + style + ' background-image: url(\'' + image + '\') ' + (alt ? 'alt="' + alt + '"' : '') + '"></div>'
+          htmlContainer += '<div class="bg" style="' + style + ' background-image: url(\'' + image + '\')"' + (alt ? 'alt="' + alt + '"' : '') + '"></div>'
       }
       //Add the overlay - clear the background if using a single title for all
       htmlContainer += '<div class="overlay" ' + (isSingleTitle ? 'style="background:none"' : '') + '>'
