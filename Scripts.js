@@ -1,5 +1,7 @@
-// Scripts.js - v1.41
+// Scripts.js - v1.42
 /*
+1.42
+- Fixed space in slideshow classes for Swiper 9
 1.41
 - Fixed alt tags in Swiper Carousel
 1.40
@@ -847,7 +849,7 @@ function initSwiperSlideshow(options) {
     grabCursor: true,
     effect: options.effect || 'scroll',
     speed: 750,
-    containerModifierClass: 'swiper-slideshow swiper-',
+    containerModifierClass: 'swiper-slideshow-',
     resistance: false,
     autoplay: {
       delay: 5000,
