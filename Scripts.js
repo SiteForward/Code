@@ -1,5 +1,7 @@
-// Scripts.js - v1.42
+// Scripts.js - v1.43
 /*
+1.43
+- Fixed Services slideshow using Swiper9
 1.42
 - Fixed space in slideshow classes for Swiper 9
 1.41
@@ -849,7 +851,6 @@ function initSwiperSlideshow(options) {
     grabCursor: true,
     effect: options.effect || 'scroll',
     speed: 750,
-    containerModifierClass: 'swiper-slideshow-',
     resistance: false,
     autoplay: {
       delay: 5000,
@@ -883,7 +884,7 @@ function initSwiperSlideshow(options) {
   items.each(function(e, i) {
     $(i).wrap('<div class="swiper-slide">')
   })
-  $container.wrapInner('<div class="swiper"><div class="swiper-wrapper">')
+  $container.wrapInner('<div class="swiper swiper-slideshow swiper-container"><div class="swiper-wrapper">')
   $container = $container.find(".swiper")
 
   //Add Pagination if not specified
