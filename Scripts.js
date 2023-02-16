@@ -1,5 +1,7 @@
-// Scripts.js - v1.43
+// Scripts.js - v1.44
 /*
+1.44
+- Fixed issue with changing swiper container
 1.43
 - Fixed Services slideshow using Swiper9
 1.42
@@ -654,7 +656,6 @@ function initSwiperCarousel(options) {
       slidesPerView: 1,
       loop: true,
       grabCursor: true,
-      containerModifierClass: 'swiper-container-',
       effect: options.effect || 'scroll',
       speed: 750,
       resistance: false,
