@@ -1,5 +1,7 @@
-// Scripts.js - v1.44
+// Scripts.js - v1.45
 /*
+1.45
+- initBlogDisclaimer will now add * to external blogs and open in new tab
 1.44
 - Fixed issue with changing swiper container
 1.43
@@ -284,22 +286,33 @@ function initBlogDisclaimer(notPages) {
 var putOnPage = true;
 var pagePath  = window.location.pathname;
 
-if(notPages != null)
-  for(var i = 0; i < notPages.length; i++){
-    if(pagePath.indexOf(notPages[i]) > -1)
-      putOnPage = false;
-  }
-    if (($(".blog-page").length > 0||$(".post").length > 0) && putOnPage) {
-        $(".post-link").each(function(i, item) {
-            item = $(item);
-            var link = item.find("a");
-            if (link.prop("target") == "_blank" && link.prop("href").indexOf("https://static.twentyoverten.com") != 0) {
-                item.find(".post-header").find("h3").append('<sup style="font-size:.9rem"> *</sup>');
-            }
-        });
-        $(".blog-page" + notOnPage + " #page, .blog-page" + notOnPage + " .content-wrapper").append('<div class="container"><div class="main-content" id="footNote" ><p style="text-align:center" class="disclaimer">' +  disclaimer + '</p></div></div>');
-        $(".post .post-wrapper").append('<div id="footNote"><hr><p style="text-align:center" class="disclaimer">' + disclaimer + '</p></div>');
+  if(notPages != null)
+    for(var i = 0; i < notPages.length; i++){
+      if(pagePath.indexOf(notPages[i]) > -1)
+        putOnPage = false;
     }
+  if (($(".blog-page").length > 0||$(".post").length > 0) && putOnPage) {
+      $(".post-link").each(function(i, item) {
+          item = $(item);
+          var link = item.find("a");
+          if (link.prop("target") == "_blank" && link.prop("href").indexOf("https://static.twentyoverten.com") != 0) {
+              item.find(".post-header").find("h3").append('<sup style="font-size:.9rem"> *</sup>');
+          }
+      });
+      $(".blog-page" + notOnPage + " #page, .blog-page" + notOnPage + " .content-wrapper").append('<div class="container"><div class="main-content" id="footNote" ><p style="text-align:center" class="disclaimer">' +  disclaimer + '</p></div></div>');
+      $(".post .post-wrapper").append('<div id="footNote"><hr><p style="text-align:center" class="disclaimer">' + disclaimer + '</p></div>');
+  }
+
+  let currentURL = window.location.host
+  document.querySelectorAll(".post-link a").forEach(e =>{
+      let url = e.href
+      if(url.indexOf(currentURL) == -1){
+          e.setAttribute("target", "_blank")
+          let title = e.querySelector("h3").textContent
+          if(title[title.length-1] != "*")
+              e.querySelector("h3").textContent+="*"
+      }
+  })
 }
 
 function updateCopyrightYear() {
