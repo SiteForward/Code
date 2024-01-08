@@ -1,0 +1,180 @@
+/* Padding removal */
+.pv0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+.ph0 {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Margin removal */
+.mv0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+.mh0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Misc Text Changes */
+@media (max-width: 820px) {
+  .mobile-text-left {
+    text-align: left;
+  }
+  .mobile-text-center {
+    text-align: center;
+  }
+  .mobile-text-right {
+    text-align: right;
+  }
+}
+@media (min-width: 820px) {
+  .desktop-text-left {
+    text-align: left;
+  }
+  .desktop-text-center {
+    text-align: center;
+  }
+  .desktop-text-right {
+    text-align: right;
+  }
+}
+
+/* Multiple Button Alignment */
+.multiple-buttons .btn {
+  margin: 0 5px 10px;
+}
+.multiple-buttons .btn:last-child {
+  margin: 0 5px 0px;
+}
+
+/* Align last element of child container */
+.align-bottom > * {
+  display: flex;
+  flex-direction: column;
+}
+.align-bottom > * > *:last-child {
+  margin-top: auto;
+}
+
+/* Font options */
+p.jumbo {
+  font-size: 2em;
+  line-height: 1.4;
+}
+p.hero {
+  font-size: 1.5em;
+  line-height: 1.5;
+}
+p.disclaimer {
+  font-size: 0.75em;
+  line-height: 1.5;
+}
+
+/* Callouts */
+.callout {
+  margin: 0 1rem;
+  padding: 1rem;
+  position: relative;
+  color: rgba(20, 20, 20, 0.6);
+}
+.callout::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -100vw;
+  width: 200vw;
+  background-color: #f3f3f3;
+}
+.callout.black::before {
+  background-color: #212121;
+}
+.callout.lighter::before {
+  background-color: #ffffff3d;
+}
+.callout.darker::before {
+  background-color: #1111113d;
+}
+
+/* ----- Callout Image----- */
+.callout.image {
+  min-height: 300px;
+}
+.callout.image.center {
+  display: flex;
+  align-items: center;
+}
+.callout.image.center > div:not(.callout-overlay) {
+  width: 100%;
+}
+.callout.image::before {
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+  background-color: #b0b0b3;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center;
+  background-size: cover;
+  background-image: var(--url);
+}
+.callout.image .callout-overlay {
+  background-color: rgba(0 0 0 / 0.5);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  height: 100%;
+  z-index: 3;
+}
+.callout.image > *:not(.callout-overlay) {
+  z-index: 4;
+  position: relative;
+}
+
+.callout.image.parallax::before {
+  background-position-y: var(--y);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* ----- HR Line ----- */
+hr.line-90 {
+  width: 90%;
+}
+hr.line-70 {
+  width: 70%;
+}
+hr.line-50 {
+  width: 50%;
+}
+hr.line-30 {
+  width: 30%;
+}
+hr.line-10 {
+  width: 10%;
+}
+hr.left {
+  margin: 20px 0;
+}
+hr.right {
+  margin-right: 0;
+}
+hr.thin {
+  border-width: 1px;
+}
+hr.white {
+  border-color: #fff;
+}
+hr.black {
+  border-color: #111;
+}
+hr.green {
+  border-color: #06a65c;
+}

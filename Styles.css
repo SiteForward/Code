@@ -2018,3 +2018,7 @@ p.multiple-buttons .btn {
 p.multiple-buttons .btn:last-child {
   margin: 0 5px 0px;
 }
+img[src*="library.siteforward.ca/images/french/Manulife_Wealth_linear"], 
+img[src*="library.siteforward.ca/images/english/Manulife_Wealth_linear"] {
+  padding: 1rem !important;
+}
