@@ -2018,6 +2018,25 @@ p.multiple-buttons .btn {
 p.multiple-buttons .btn:last-child {
   margin: 0 5px 0px;
 }
+
+
+
+/*
+	Set the year of all the login feed posts to 2000 - :has is supported on most browsers, but not all.
+*/
+time[datetime^="2000"], .post-link:has(time[datetime^="2000"]) > a{
+	display: none !important;
+}
+/*
+	Add hover effect to hovering button
+*/
+input[type=submit].btn:hover {
+    cursor: pointer;
+}
+
+/*
+  Add padding around Manulife Wealth Logos
+*/
 img[src*="library.siteforward.ca/images/french/Manulife_Wealth_linear"], 
 img[src*="library.siteforward.ca/images/english/Manulife_Wealth_linear"] {
   padding: 1rem !important;
