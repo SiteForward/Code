@@ -1,5 +1,7 @@
-// Scripts.js - v1.45
+// Scripts.js - v1.46
 /*
+1.46
+- Added Manulife Wealth blog discliamer
 1.45
 - initBlogDisclaimer will now add * to external blogs and open in new tab
 1.44
@@ -271,6 +273,7 @@ function updateOnTransparent(transparent, notTransparent) {
 
 function initBlogDisclaimer(notPages) {
   var notOnPage = ":not(.client-login)";
+  var isManulifeWealth = document.querySelector("footer img[src*=Manulife_Wealth]") != null
 
   if(notPages){
     if(typeof notPages == "string")
@@ -280,8 +283,13 @@ function initBlogDisclaimer(notPages) {
     });
   }
 
-  var disclaimer = '* This article link will open in a new internet browser tab.<br> The Advisor and Manulife Securities Incorporated, Manulife Securities Investment Services Inc. (“Manulife Securities”) and/or Manulife Securities Insurance Inc. do not make any representation that the information in any linked site is accurate and will not accept any responsibility or liability for any inaccuracies in the information not maintained by them, such as linked sites. Any opinion or advice expressed in a linked site should not be construed as the opinion or advice of the advisor or Manulife Securities. The information in this communication is subject to change without notice.' +
-  '<br><br>This publication contains opinions of the writer and may not reflect opinions of the Advisor and Manulife Securities Incorporated, Manulife Securities Investment Services Inc. (“Manulife Securities”) and/or Manulife Securities Insurance Inc. The information contained herein was obtained from sources believed to be reliable, no representation, or warranty, express or implied, is made by the writer, Manulife Securities or any other person as to its accuracy, completeness or correctness. This publication is not an offer to sell or a solicitation of an offer to buy any of the securities. The securities discussed in this publication may not be eligible for sale in some jurisdictions. If you are not a Canadian resident, this report should not have been delivered to you. This publication is not meant to provide legal or account advice. As each situation is different you should consult your own professional Advisors for advice based on your specific circumstances.';
+  var disclaimer = ''
+  if(isManulifeWealth)
+    disclaimer = '* This article link will open in a new internet browser tab.<br>The Advisor and Manulife Wealth Inc. and/or Manulife Wealth Insurance Services Inc. (“Manulife Wealth”) do not make any representation that the information in any linked site is accurate and will not accept any responsibility or liability for any inaccuracies in the information not maintained by them, such as linked sites. Any opinion or advice expressed in a linked site should not be construed as the opinion or advice of the advisor or Manulife Wealth. The information in this communication is subject to change without notice.'+
+    '<br><br>This publication contains opinions of the writer and may not reflect opinions of the Advisor and Manulife Wealth Inc. and/or Manulife Wealth Insurance Services Inc. (collectively, “Manulife Wealth"). The information contained herein was obtained from sources believed to be reliable. No representation, or warranty, express or implied, is made by the writer, Manulife Wealth or any other person as to its accuracy, completeness or correctness. This publication is not an offer to sell or a solicitation of an offer to buy any of the securities. The securities discussed in this publication may not be eligible for sale in some jurisdictions. If you are not a Canadian resident, this report should not have been delivered to you. This publication is not meant to provide legal, financial, tax or investment advice. As each situation is different, you should consult your own professional advisors for advice based on your specific circumstances.'
+  else 
+    disclaimer = '* This article link will open in a new internet browser tab.<br> The Advisor and Manulife Securities Incorporated, Manulife Securities Investment Services Inc. (“Manulife Securities”) and/or Manulife Securities Insurance Inc. do not make any representation that the information in any linked site is accurate and will not accept any responsibility or liability for any inaccuracies in the information not maintained by them, such as linked sites. Any opinion or advice expressed in a linked site should not be construed as the opinion or advice of the advisor or Manulife Securities. The information in this communication is subject to change without notice.' +
+    '<br><br>This publication contains opinions of the writer and may not reflect opinions of the Advisor and Manulife Securities Incorporated, Manulife Securities Investment Services Inc. (“Manulife Securities”) and/or Manulife Securities Insurance Inc. The information contained herein was obtained from sources believed to be reliable, no representation, or warranty, express or implied, is made by the writer, Manulife Securities or any other person as to its accuracy, completeness or correctness. This publication is not an offer to sell or a solicitation of an offer to buy any of the securities. The securities discussed in this publication may not be eligible for sale in some jurisdictions. If you are not a Canadian resident, this report should not have been delivered to you. This publication is not meant to provide legal or account advice. As each situation is different you should consult your own professional Advisors for advice based on your specific circumstances.';
 
 var putOnPage = true;
 var pagePath  = window.location.pathname;
