@@ -1,5 +1,7 @@
-// Scripts.js - v1.46
+// Scripts.js - v1.47
 /*
+1.47
+- Updated * on external links to only apply on blog pages not included in the exempt list for initBlogDisclaimer
 1.46
 - Added Manulife Wealth blog discliamer
 1.45
@@ -312,7 +314,7 @@ var pagePath  = window.location.pathname;
   }
 
   let currentURL = window.location.host
-  document.querySelectorAll(".post-link a").forEach(e =>{
+  document.querySelector(".blog-page" + notOnPage + " #page, .blog-page" + notOnPage + " .content-wrapper")?.querySelectorAll(".post-link a").forEach(e =>{
       let url = e.href
       if(url.indexOf(currentURL) == -1){
           e.setAttribute("target", "_blank")
