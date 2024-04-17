@@ -1,4 +1,6 @@
-/* Styles.css - v1.74
+/* Styles.css - v1.74.1
+1.74.1
+- Added padding to logo Manulife Wealth logos
 1.74
 - added style for p tag containing multiple buttons
 - Fixed .form-item.split
@@ -2037,6 +2039,7 @@ input[type=submit].btn:hover {
 /*
   Add padding around Manulife Wealth Logos
 */
+#logo img[src*="Manulife_Wealth_linear"], 
 img[src*="library.siteforward.ca/images/french/Manulife_Wealth_linear"], 
 img[src*="library.siteforward.ca/images/english/Manulife_Wealth_linear"] {
   padding: 1rem !important;
