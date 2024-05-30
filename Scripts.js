@@ -1,5 +1,7 @@
-// Scripts.js - v1.47
+// Scripts.js - v1.48
 /*
+1.48
+- Added code that runs globally
 1.47
 - Updated * on external links to only apply on blog pages not included in the exempt list for initBlogDisclaimer
 1.46
@@ -125,6 +127,12 @@
 1.6
 - Added option to define just alignment in initCarousel
 */
+
+initGlobal()
+function initGlobal(){
+  waitForLoad(()=> document.querySelectorAll("a[href$='manulifesecurities.ca']").forEach(e=>e.outerHTML = e.outerHTML.replace(/manulifesecurities/g, "manulifewealth")))
+}
+
 
 // INITIALIZE TABBED SERVICES ICON CAROUSEL WITH AUTOHEIGHT ADJUSTMENT
 function initServiceCarouselAutoH() {
