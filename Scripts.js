@@ -1,5 +1,7 @@
-// Scripts.js - v1.48
+// Scripts.js - v1.48.1
 /*
+1.48.1
+- Code runs regardless of case sensitivity
 1.48
 - Added code that runs globally
 1.47
@@ -130,7 +132,9 @@
 
 initGlobal()
 function initGlobal(){
-  waitForLoad(()=> document.querySelectorAll("a[href$='manulifesecurities.ca']").forEach(e=>e.outerHTML = e.outerHTML.replace(/manulifesecurities/g, "manulifewealth")))
+  waitForLoad(()=> {
+    document.querySelectorAll("a[href^='mailto']").forEach(e=>e.outerHTML = e.outerHTML.replace(/manulifesecurities/gi, "manulifewealth"))
+  })
 }
 
 
