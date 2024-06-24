@@ -133,7 +133,17 @@
 initGlobal()
 function initGlobal(){
   waitForLoad(()=> {
+    // Update email addresses
     document.querySelectorAll("a[href^='mailto']").forEach(e=>e.outerHTML = e.outerHTML.replace(/manulifesecurities/gi, "manulifewealth"))
+    
+    //Remove broken calculator
+    let quick_quote = document.querySelector("a[href='http://www.insureright.ca/quickquote/']") || document.querySelector("a[href='https://www.biensassurer.ca/calculrapide/']")
+    if(quick_quote){
+        let calculator_row = quick_quote.parentElement.parentElement
+        quick_quote.parentElement.remove()
+        calculator_row.querySelectorAll(".col-xs-12").forEach(e=>{e.classList.remove("col-sm-3");e.classList.add("col-sm-4");})
+    }
+
   })
 }
 
