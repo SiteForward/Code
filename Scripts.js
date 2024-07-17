@@ -141,7 +141,7 @@ function initGlobal(){
     if(quick_quote){
         let calculator_row = quick_quote.parentElement.parentElement
         quick_quote.parentElement.remove()
-        calculator_row.querySelectorAll(".col-xs-12").forEach(e=>{e.classList.remove("col-sm-3");e.classList.add("col-sm-4");})
+        Array.from(calculator_row.querySelectorAll(".col-xs-12")).slice(0,3).forEach(e=>{e.classList.remove("col-sm-3");e.classList.add("col-sm-4");})
     }
 
   })

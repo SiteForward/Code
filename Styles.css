@@ -138,6 +138,9 @@ body{
     padding: 0 2rem;
   }
 }
+.financial-calculators > div.row.card-row.seperate{
+  justify-content: center;
+}
 
 /* ----- Base----- */
 hr {
