@@ -1,4 +1,6 @@
-/* Styles.css - v1.74.1
+/* Styles.css - v1.75
+1.75
+- If only 2 dealer logos, adjust positioning to make it look more even
 1.74.1
 - Added padding to logo Manulife Wealth logos
 1.74
@@ -1921,6 +1923,9 @@ Footer Dealer Logos
   padding: 0;
   margin-bottom: 1em;
   margin-top: 0;
+}
+.dealer-logos-container:has(>a:nth-of-type(2):last-child) a {
+  flex-basis: 50%;
 }
 
 .dealer-logos-container a {
