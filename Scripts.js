@@ -1,5 +1,7 @@
-// Scripts.js - v1.48.1
+// Scripts.js - v1.49
 /*
+1.49
+- initFrenchBlog() now replaces the months in a blog post
 1.48.1
 - Code runs regardless of case sensitivity
 1.48
@@ -1321,7 +1323,7 @@ function initFrenchBlog() {
     $(".blog-page .content-wrapper .prev-page").text("Page Précédente");
     $(".blog-page .content-wrapper .next-page").text("Page Suivante");
 
-    $(".blog-page .content-wrapper .post-meta time").each(function() {
+    $(":is(.blog-page, .post) .content-wrapper .post-meta time").each(function() {
         var time = $(this).html()
             .replace(/January/g, "Janvier")
             .replace(/Febuary/g, "Février")
